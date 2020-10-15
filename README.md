@@ -22,7 +22,7 @@ If you want to use GeoPandas with this SDK, you need to install it separately as
 
 ## Authentication
 
-Your must use the `API_KEY` environment variable to store your API key to Portall for the Python SDK to work.
+Your can use the `API_KEY` environment variable to store your API key to Portall for the Python SDK to work, or pass it to `APIClient` when instantiating the API client.
 
 ## Regular Python usage example
 
