@@ -17,7 +17,7 @@ ENDPOINT_RESOLVE_ISOLINES = os.getenv("ENDPOINT_RESOLVE_ISOLINES", "https://port
 
 class APIClient:
     def __init__(self, api_key: Optional[str] = None, batch: bool = False) -> None:
-        self.api_key = api_key or os.getenv("API_KEY", "POthpWjp6BbPBh3VNRL2LKxGx7zK9SYp")
+        self.api_key = api_key or os.getenv("API_KEY")
         if self.api_key is None:
             raise PyPortallException("API key is required to use Portall's API")
         self.batch = batch
