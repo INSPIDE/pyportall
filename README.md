@@ -4,17 +4,17 @@ Python SDK to Portall
 
 ## Installation
 
-Installing is straightforward:
+Installing is straightforward (you may want to replace `ssh` by `https` depending on your preference):
 
 ```
-$ pip install -e git+git@github.com:inspide/pyportall.git@0.0.1#egg=pyportall
+$ pip install -e git+ssh://git@github.com/inspide/pyportall.git@0.0.1#egg=pyportall
 ```
 
 Or, as part of your `requirements.txt` file:
 
 ```
 ...
--e git+git@github.com:inspide/pyportall.git@0.0.1#egg=pyportall
+-e git+ssh://git@github.com/inspide/pyportall.git@0.0.1#egg=pyportall
 ...
 ```
 
