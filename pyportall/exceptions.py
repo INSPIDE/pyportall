@@ -1,0 +1,2 @@
+class PyPortallException(Exception):
+    pass

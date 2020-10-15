@@ -1,0 +1,28 @@
+from setuptools import setup, find_packages
+
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+setup(
+    name="pyportall",
+    author="Daniel Carrión",
+    author_email="dcarrion@inspide.com",
+    description="Portall Python SDK",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    version="0.3",
+    classifiers=[
+        "Programming Language :: Python :: 3.8",
+        "License :: Other/Proprietary License",
+        "Operating System :: OS Independent",
+    ],
+    packages=find_packages(),
+    install_requires=[
+        'pydantic==1.6.1',
+        'httpx==0.15.5'
+    ],
+    extras_require={
+        "geopandas": ["geopandas==0.8.1"],
+    }
+)
