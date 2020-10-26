@@ -7,14 +7,14 @@ Python SDK to Portall
 Installing is straightforward (you may want to replace `ssh` by `https` depending on your preference):
 
 ```
-$ pip install -e git+ssh://git@github.com/inspide/pyportall.git@0.0.1#egg=pyportall
+$ pip install -e git+ssh://git@github.com/inspide/pyportall.git@0.0.2#egg=pyportall
 ```
 
 Or, as part of your `requirements.txt` file:
 
 ```
 ...
--e git+ssh://git@github.com/inspide/pyportall.git@0.0.1#egg=pyportall
+-e git+ssh://git@github.com/inspide/pyportall.git@0.0.2#egg=pyportall
 ...
 ```
 
@@ -32,9 +32,12 @@ First of all, let us find out about the available indicators, and make sure foot
 
 ```python
 from pyportall.metadata import MetadataHelper
+from pyportall.api import APIClient
 
 
-metadata_helper = MetadataHelper()
+client = APIClient(api_key="MY_API_KEY")  # API key can also be automatically detected from the PYPORTALL_API_KEY enviroment variable; a batch boolean is also available (defaults to False) to avoid timeouts
+
+metadata_helper = MetadataHelper(client)
 
 indicators = metadata_helper.all()
 # indicators: [IndicatorMetadata(code='pop', name='Footfall', description='Number of people', unit='', format='', coverage='Madrid - UFA', resolution='H3 (11, 12)', data_source='Orange', computed_date=datetime.date(2019, 2, 1), aggregate_fn=<Aggregate.sum: 'sum'>, data_type=<DataType.integer: 'integer'>), IndicatorMetadata(code='avg_stay_total', name='Total stay time', description='Accumulated time spent in this area', unit='', format='', coverage='', resolution='', data_source='Inspide', computed_date=datetime.date(2020, 10, 14), aggregate_fn=<Aggregate.avg: 'avg'>, data_type=<DataType.decimal: 'decimal'>)]
@@ -47,10 +50,6 @@ Now let us find the isoline and isovist we want to use:
 ```python
 from pyportall.models import Options, Position, Isoline, IsolineMode, Isovist, Indicator
 from pyportall.engine import GeocodingHelper, IsolineHelper, IsovistHelper, IndicatorHelper
-from pyportall.api import APIClient
-
-
-client = APIClient(api_key="MY_API_KEY")  # API key can also be automatically detected from the API_KEY enviroment variable; a batch boolean is also available (defaults to False) to avoid timeouts
 
 
 geocoding_helper = GeocodingHelper(client, options=Options(country="Spain"))
@@ -128,7 +127,7 @@ from pyportall.geopandas import GeocodingHelper, IsovistHelper, IndicatorHelper,
 from pyportall.api import APIClient
 
 
-client = APIClient(api_key="MY_API_KEY")  # API key can also be automatically detected from the API_KEY enviroment variable; a batch boolean is also available (defaults to False) to avoid timeouts
+client = APIClient(api_key="MY_API_KEY")  # API key can also be automatically detected from the PYPORTALL_API_KEY enviroment variable; a batch boolean is also available (defaults to False) to avoid timeouts
 
 
 addresses = pd.Series(["Gran vía 40 Madrid", "Paseo de la Castellana 80 Madrid"])
@@ -188,7 +187,7 @@ from pyportall.metadata import MetadataHelper
 from pyportall.api import APIClient
 
 
-client = APIClient(api_key="MY_API_KEY")  # API key can also be automatically detected from the API_KEY enviroment variable; a batch boolean is also available (defaults to False) to avoid timeouts
+client = APIClient(api_key="MY_API_KEY")  # API key can also be automatically detected from the PYPORTALL_API_KEY enviroment variable; a batch boolean is also available (defaults to False) to avoid timeouts
 
 
 geocoding_helper = GeocodingHelper(client, options=Options(country="Spain"))
@@ -210,7 +209,7 @@ isovist_helper.resolve(isovists)
 moments = [Moment(dow="friday", month="february", hour=10), Moment(dow="friday", month="february", hour=18)]
 # moments: Moment(id=None, dow=<DayOfWeek.friday: 'friday'>, month=<Month.february: 'february'>, hour=10, year=2020), Moment(id=None, dow=<DayOfWeek.friday: 'friday'>, month=<Month.february: 'february'>, hour=18, year=2020)]
 
-metadata_helper = MetadataHelper()
+metadata_helper = MetadataHelper(client)
 
 footfall = metadata_helper.all()[0]
 # footfall: IndicatorMetadata(code='pop', name='Footfall', description='Number of people', unit='', format='', coverage='Madrid - UFA', resolution='H3 (11, 12)', data_source='Orange', computed_date=datetime.date(2019, 2, 1), aggregate_fn=<Aggregate.sum: 'sum'>, data_type=<DataType.integer: 'integer'>)

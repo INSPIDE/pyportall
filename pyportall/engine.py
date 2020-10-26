@@ -2,13 +2,8 @@ from typing import Any, Dict, List, Optional, Union
 
 from .models import Indicator, Isoline, Isovist, Moment, Options, Polygon, Position
 from .utils import jsonable_encoder
-from .api import APIClient, ENDPOINT_POLYGONS, ENDPOINT_GEOCODING, ENDPOINT_RESOLVE_ISOLINES, ENDPOINT_RESOLVE_ISOVISTS
+from .api import APIClient, APIHelper, ENDPOINT_POLYGONS, ENDPOINT_GEOCODING, ENDPOINT_RESOLVE_ISOLINES, ENDPOINT_RESOLVE_ISOVISTS
 from .geojson import Polygon as GeometryPolygon
-
-
-class APIHelper:
-    def __init__(self, client: APIClient) -> None:
-        self.client = client
 
 
 class GeocodingHelper(APIHelper):
@@ -29,7 +24,7 @@ class GeocodingHelper(APIHelper):
         if self.options is not None:
             api_input["options"] = self.options.dict()
 
-        raw_geocoded_positions = self.client.call(ENDPOINT_GEOCODING, api_input)
+        raw_geocoded_positions = self.client.call_indicators(ENDPOINT_GEOCODING, api_input)
 
         for (original_position, raw_geocoded_position) in zip (positions, raw_geocoded_positions):
             original_position.lon = raw_geocoded_position["lon"]
@@ -42,7 +37,7 @@ class IsovistHelper(APIHelper):
     def resolve(self, isovists: List[Isovist]) -> None:
         api_input: Dict[str, Any] = {"locations": [isovist.dict() for isovist in isovists]}
 
-        resolved_isovists = self.client.call(ENDPOINT_RESOLVE_ISOVISTS, api_input)
+        resolved_isovists = self.client.call_indicators(ENDPOINT_RESOLVE_ISOVISTS, api_input)
 
         for (original_isovist, resolved_isovist) in zip (isovists, resolved_isovists):
             original_isovist.geom = GeometryPolygon(**resolved_isovist["geom"])
@@ -54,7 +49,7 @@ class IsolineHelper(APIHelper):
     def resolve(self, isolines: List[Isoline]) -> None:
         api_input: Dict[str, Any] = {"locations": [isoline.dict() for isoline in isolines]}
 
-        resolved_isolines = self.client.call(ENDPOINT_RESOLVE_ISOLINES, api_input)
+        resolved_isolines = self.client.call_indicators(ENDPOINT_RESOLVE_ISOLINES, api_input)
 
         for (original_isoline, resolved_isoline) in zip (isolines, resolved_isolines):
             original_isoline.geom = GeometryPolygon(**resolved_isoline["geom"])
@@ -85,6 +80,6 @@ class IndicatorHelper(APIHelper):
         if self.options is not None:
             api_input["options"] = self.options.dict()
 
-        raw_indicators = self.client.call(ENDPOINT_POLYGONS, api_input)
+        raw_indicators = self.client.call_indicators(ENDPOINT_POLYGONS, api_input)
 
         return [Indicator(**indicator) for indicator in raw_indicators]

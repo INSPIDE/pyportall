@@ -8,21 +8,21 @@ from .exceptions import PyPortallException
 
 BATCH_DELAY_S = 5
 
-ENDPOINT_METADATA = os.getenv("ENDPOINT_METADATA", "https://portall-api.inspide.com/v0/metadata/indicators/")
-ENDPOINT_POLYGONS = os.getenv("ENDPOINT_POLYGONS", "https://portall-api.inspide.com/v0/indicators/polygons.json")
-ENDPOINT_GEOCODING = os.getenv("ENDPOINT_GEOCODING", "https://portall-api.inspide.com/v0/tools/geocoding.json")
-ENDPOINT_RESOLVE_ISOVISTS = os.getenv("ENDPOINT_RESOLVE_ISOVISTS", "https://portall-api.inspide.com/v0/tools/isovists.json")
-ENDPOINT_RESOLVE_ISOLINES = os.getenv("ENDPOINT_RESOLVE_ISOLINES", "https://portall-api.inspide.com/v0/tools/isolines.json")
+ENDPOINT_METADATA = os.getenv("PYPORTALL_ENDPOINT_METADATA", "https://portall-api.inspide.com/v0/metadata/indicators/")
+ENDPOINT_POLYGONS = os.getenv("PYPORTALL_ENDPOINT_POLYGONS", "https://portall-api.inspide.com/v0/indicators/polygons.json")
+ENDPOINT_GEOCODING = os.getenv("PYPORTALL_ENDPOINT_GEOCODING", "https://portall-api.inspide.com/v0/tools/geocoding.json")
+ENDPOINT_RESOLVE_ISOVISTS = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOVISTS", "https://portall-api.inspide.com/v0/tools/isovists.json")
+ENDPOINT_RESOLVE_ISOLINES = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOLINES", "https://portall-api.inspide.com/v0/tools/isolines.json")
 
 
 class APIClient:
     def __init__(self, api_key: Optional[str] = None, batch: bool = False) -> None:
-        self.api_key = api_key or os.getenv("API_KEY")
+        self.api_key = api_key or os.getenv("PYPORTALL_API_KEY")
         if self.api_key is None:
             raise PyPortallException("API key is required to use Portall's API")
         self.batch = batch
 
-    def call(self, url: str, input: Any, preflight: bool = False, batch: bool = False) -> Any:
+    def call_indicators(self, url: str, input: Any, preflight: bool = False, batch: bool = False) -> Any:
         query_params: Dict[str, Any] = {"apikey": self.api_key}
         if preflight is True:
             query_params["preflight"] = True
@@ -52,3 +52,16 @@ class APIClient:
             raise PyPortallException("Wrong API key")
         else:
             raise PyPortallException(response.json())
+
+    def call_metadata(self, url: str = ENDPOINT_METADATA) -> Any:
+        response = httpx.get(url)
+
+        if response.status_code == 200:
+            return response.json()
+        else:
+            raise PyPortallException(response.json())
+
+
+class APIHelper:
+    def __init__(self, client: APIClient) -> None:
+        self.client = client
