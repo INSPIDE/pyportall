@@ -17,17 +17,17 @@ ENDPOINT_DISAGGREGATED_INDICATORS = os.getenv("PYPORTALL_ENDPOINT_DISAGGREGATED_
 
 
 class APIClient:
-    def __init__(self, api_key: Optional[str] = None, batch: bool = False) -> None:
+    def __init__(self, api_key: Optional[str] = None, batch: Optional[bool] = False) -> None:
         self.api_key = api_key or os.getenv("PYPORTALL_API_KEY")
         if self.api_key is None:
             raise PyPortallException("API key is required to use Portall's API")
         self.batch = batch
 
-    def call_indicators(self, url: str, input: Any, preflight: bool = False, batch: bool = False) -> Any:
+    def call_indicators(self, url: str, input: Any, preflight: bool = False, batch: Optional[bool] = None) -> Any:
         query_params: Dict[str, Any] = {"apikey": self.api_key}
         if preflight is True:
             query_params["preflight"] = True
-        if batch is True:
+        if batch is True or (batch is None and self.batch is True):
             query_params["batch"] = True
 
         try:
