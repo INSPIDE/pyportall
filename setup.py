@@ -21,6 +21,6 @@ setup(
     install_requires=[
         'pydantic==1.6.1',
         'httpx==0.15.5',
-        'geopandas']
-    }
+        'geopandas'
+    ]
 )
