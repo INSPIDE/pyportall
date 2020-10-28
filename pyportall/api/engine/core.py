@@ -3,16 +3,17 @@ import httpx
 from typing import Any, Dict, Optional
 from time import sleep
 
-from .exceptions import PyPortallException
+from pyportall.exceptions import PyPortallException
 
 
 BATCH_DELAY_S = 5
 
 ENDPOINT_METADATA = os.getenv("PYPORTALL_ENDPOINT_METADATA", "https://portall-api.inspide.com/v0/metadata/indicators/")
-ENDPOINT_POLYGONS = os.getenv("PYPORTALL_ENDPOINT_POLYGONS", "https://portall-api.inspide.com/v0/indicators/polygons.json")
-ENDPOINT_GEOCODING = os.getenv("PYPORTALL_ENDPOINT_GEOCODING", "https://portall-api.inspide.com/v0/tools/geocoding.json")
-ENDPOINT_RESOLVE_ISOVISTS = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOVISTS", "https://portall-api.inspide.com/v0/tools/isovists.json")
-ENDPOINT_RESOLVE_ISOLINES = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOLINES", "https://portall-api.inspide.com/v0/tools/isolines.json")
+ENDPOINT_GEOCODING = os.getenv("PYPORTALL_ENDPOINT_GEOCODING", "https://portall-api.inspide.com/v0/pyportall/geocoding.geojson")
+ENDPOINT_RESOLVE_ISOVISTS = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOVISTS", "https://portall-api.inspide.com/v0/pyportall/isovists.geojson")
+ENDPOINT_RESOLVE_ISOLINES = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOLINES", "https://portall-api.inspide.com/v0/pyportall/isolines.geojson")
+ENDPOINT_AGGREGATED_INDICATORS = os.getenv("PYPORTALL_ENDPOINT_AGGREGATED_INDICATORS", "https://portall-api.inspide.com/v0/pyportall/indicators.geojson")
+ENDPOINT_DISAGGREGATED_INDICATORS = os.getenv("PYPORTALL_ENDPOINT_DISAGGREGATED_INDICATORS", "https://portall-api.inspide.com/v0/pyportall/indicator.geojson")
 
 
 class APIClient:
@@ -50,8 +51,10 @@ class APIClient:
                     return None
         elif response.status_code == 401:
             raise PyPortallException("Wrong API key")
+        elif response.status_code == 422:
+            raise PyPortallException(response.json()["detail"])
         else:
-            raise PyPortallException(response.json())
+            raise PyPortallException(response.text)
 
     def call_metadata(self, url: str = ENDPOINT_METADATA) -> Any:
         response = httpx.get(url)
