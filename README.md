@@ -61,7 +61,7 @@ isolines = isoline_helper.resolve(gpd.GeoDataFrame({"geometry": geocodings["geom
 # 1  POLYGON ((-3.37975 40.47380, -3.37967 40.47432...  {'coordinates': [-3.37825, 40.47281], 'type': ...  pedestrian      200   None
 
 isovist_helper = IsovistHelper(client)
-isovists = isovist_helper.resolve(gpd.GeoDataFrame({"geometry": geocodings["geometry"]}, crs="EPSG:4326"))
+isovists = isovist_helper.resolve(gpd.GeoDataFrame({"geometry": geocodings["geometry"]}, crs="EPSG:4326"), options=IsovistOptions(radius_m=100))
 # isovists
 #                                             geometry                                        destination  radius_m  num_rays  heading_deg  fov_deg
 # 0  POLYGON ((-3.70587 40.42087, -3.70586 40.42088...  {'coordinates': [-3.70587, 40.42048], 'type': ...       150        -1            0      360

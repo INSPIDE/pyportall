@@ -6,7 +6,7 @@ from shapely.geometry import Polygon, mapping
 
 from pyportall.utils import jsonable_encoder
 from pyportall.api.engine.core import APIHelper, ENDPOINT_AGGREGATED_INDICATORS, ENDPOINT_DISAGGREGATED_INDICATORS, ENDPOINT_GEOCODING, ENDPOINT_RESOLVE_ISOLINES, ENDPOINT_RESOLVE_ISOVISTS
-from pyportall.api.models.lbs import GeocodingOptions
+from pyportall.api.models.lbs import GeocodingOptions, IsolineOptions, IsovistOptions
 from pyportall.api.models.indicators import Indicator, Moment
 
 
@@ -18,14 +18,14 @@ class GeocodingHelper(APIHelper):
 
 
 class IsovistHelper(APIHelper):
-    def resolve(self, gdf: gpd.GeoDataFrame, options: Optional[GeocodingOptions] = None) -> gpd.GeoDataFrame:
+    def resolve(self, gdf: gpd.GeoDataFrame, options: Optional[IsovistOptions] = None) -> gpd.GeoDataFrame:
         features = self.client.call_indicators(ENDPOINT_RESOLVE_ISOVISTS, {"gdf": json.loads(gdf.to_json()), "options": jsonable_encoder(options)})
 
         return gpd.GeoDataFrame.from_features(features=features, crs="EPSG:4326")
 
 
 class IsolineHelper(APIHelper):
-    def resolve(self, gdf: gpd.GeoDataFrame, options: Optional[GeocodingOptions] = None) -> gpd.GeoDataFrame:
+    def resolve(self, gdf: gpd.GeoDataFrame, options: Optional[IsolineOptions] = None) -> gpd.GeoDataFrame:
         features = self.client.call_indicators(ENDPOINT_RESOLVE_ISOLINES, {"gdf": json.loads(gdf.to_json()), "options": jsonable_encoder(options)})
 
         return gpd.GeoDataFrame.from_features(features=features, crs="EPSG:4326")
