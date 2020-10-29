@@ -3,7 +3,8 @@ import httpx
 from typing import Any, Dict, Optional
 from time import sleep
 
-from pyportall.exceptions import PyPortallException
+from pyportall.exceptions import PreFlightException, PyPortallException
+from pyportall.api.models.preflight import Preflight
 
 
 BATCH_DELAY_S = 5
@@ -17,17 +18,18 @@ ENDPOINT_DISAGGREGATED_INDICATORS = os.getenv("PYPORTALL_ENDPOINT_DISAGGREGATED_
 
 
 class APIClient:
-    def __init__(self, api_key: Optional[str] = None, batch: Optional[bool] = False) -> None:
+    def __init__(self, api_key: Optional[str] = None, batch: Optional[bool] = False, preflight: Optional[bool] = False) -> None:
         self.api_key = api_key or os.getenv("PYPORTALL_API_KEY")
         if self.api_key is None:
             raise PyPortallException("API key is required to use Portall's API")
         self.batch = batch
+        self.preflight = preflight
 
-    def call_indicators(self, url: str, input: Any, preflight: bool = False, batch: Optional[bool] = None) -> Any:
+    def call_indicators(self, url: str, input: Any) -> Any:
         query_params: Dict[str, Any] = {"apikey": self.api_key}
-        if preflight is True:
+        if self.preflight is True:
             query_params["preflight"] = True
-        if batch is True or (batch is None and self.batch is True):
+        if self.batch is True:
             query_params["batch"] = True
 
         try:
@@ -36,6 +38,8 @@ class APIClient:
             raise PyPortallException("API is timing out, please consider using a batch-enabled client")
 
         if response.status_code == 200:
+            if self.preflight:
+                raise PreFlightException(Preflight(**response.json()).detail)
             return response.json()
         elif response.status_code == 202:
             job_url = response.json()["detail"]
