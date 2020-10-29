@@ -141,3 +141,17 @@ geocodings = geocoding_helper.resolve(addresses, options=GeocodingOptions(countr
 # 0  POINT (-3.70587 40.42048)   Spain  None   None  Madrid     None        None      gran via 46
 # 1  POINT (-3.37825 40.47281)   Spain  None   None  Madrid     None        None  calle alcalá 10
 ```
+
+## Tests
+
+Just run pytest if you want to run the tests against a mocked API:
+
+```
+$ pytest
+```
+
+You can also run the test suite against the live API if you use a real API key:
+
+```
+$ env PYPORTALL_API_KEY=MY_API_KEY pytest
+```
