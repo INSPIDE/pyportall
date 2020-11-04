@@ -1,0 +1,1698 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.2">
+    
+    
+      
+        <title>pyportall.api.engine - pyportall</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.19190aaf.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.24b84193.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pyportall.api.engine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="pyportall" class="md-header-nav__button md-logo" aria-label="pyportall">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            pyportall
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              pyportall.api.engine
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="pyportall" class="md-nav__button md-logo" aria-label="pyportall">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    pyportall
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Welcome to pyportall
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting_started/" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../examples/" class="md-nav__link">
+      Examples
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        pyportall.api.engine
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      pyportall.api.engine
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.engine" class="md-nav__link">
+    pyportall.api.engine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core" class="md-nav__link">
+    core
+  </a>
+  
+    <nav class="md-nav" aria-label="core">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIClient" class="md-nav__link">
+    APIClient
+  </a>
+  
+    <nav class="md-nav" aria-label="APIClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIClient.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIClient.call_indicators" class="md-nav__link">
+    call_indicators()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIClient.call_metadata" class="md-nav__link">
+    call_metadata()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIHelper" class="md-nav__link">
+    APIHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="APIHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIHelper.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas" class="md-nav__link">
+    geopandas
+  </a>
+  
+    <nav class="md-nav" aria-label="geopandas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.GeocodingHelper" class="md-nav__link">
+    GeocodingHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="GeocodingHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.GeocodingHelper.resolve" class="md-nav__link">
+    resolve()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IndicatorHelper" class="md-nav__link">
+    IndicatorHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="IndicatorHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IndicatorHelper.resolve_aggregated" class="md-nav__link">
+    resolve_aggregated()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IndicatorHelper.resolve_disaggregated" class="md-nav__link">
+    resolve_disaggregated()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IsolineHelper" class="md-nav__link">
+    IsolineHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="IsolineHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IsolineHelper.resolve" class="md-nav__link">
+    resolve()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IsovistHelper" class="md-nav__link">
+    IsovistHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="IsovistHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IsovistHelper.resolve" class="md-nav__link">
+    resolve()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata" class="md-nav__link">
+    metadata
+  </a>
+  
+    <nav class="md-nav" aria-label="metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper" class="md-nav__link">
+    MetadataHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="MetadataHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper.all" class="md-nav__link">
+    all()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper.get" class="md-nav__link">
+    get()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper.refresh" class="md-nav__link">
+    refresh()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ref_models/" class="md-nav__link">
+      pyportall.api.models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ref_exceptions/" class="md-nav__link">
+      pyportall.exceptions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.engine" class="md-nav__link">
+    pyportall.api.engine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core" class="md-nav__link">
+    core
+  </a>
+  
+    <nav class="md-nav" aria-label="core">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIClient" class="md-nav__link">
+    APIClient
+  </a>
+  
+    <nav class="md-nav" aria-label="APIClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIClient.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIClient.call_indicators" class="md-nav__link">
+    call_indicators()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIClient.call_metadata" class="md-nav__link">
+    call_metadata()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIHelper" class="md-nav__link">
+    APIHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="APIHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.core.APIHelper.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas" class="md-nav__link">
+    geopandas
+  </a>
+  
+    <nav class="md-nav" aria-label="geopandas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.GeocodingHelper" class="md-nav__link">
+    GeocodingHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="GeocodingHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.GeocodingHelper.resolve" class="md-nav__link">
+    resolve()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IndicatorHelper" class="md-nav__link">
+    IndicatorHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="IndicatorHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IndicatorHelper.resolve_aggregated" class="md-nav__link">
+    resolve_aggregated()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IndicatorHelper.resolve_disaggregated" class="md-nav__link">
+    resolve_disaggregated()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IsolineHelper" class="md-nav__link">
+    IsolineHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="IsolineHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IsolineHelper.resolve" class="md-nav__link">
+    resolve()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IsovistHelper" class="md-nav__link">
+    IsovistHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="IsovistHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.geopandas.IsovistHelper.resolve" class="md-nav__link">
+    resolve()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata" class="md-nav__link">
+    metadata
+  </a>
+  
+    <nav class="md-nav" aria-label="metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper" class="md-nav__link">
+    MetadataHelper
+  </a>
+  
+    <nav class="md-nav" aria-label="MetadataHelper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper.all" class="md-nav__link">
+    all()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper.get" class="md-nav__link">
+    get()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.engine.metadata.MetadataHelper.refresh" class="md-nav__link">
+    refresh()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>pyportall.api.engine</h1>
+                
+                <div class="doc doc-object doc-module">
+<h2 class="hidden-toc" href="#pyportall.api.engine" id="pyportall.api.engine" style="visibility: hidden; position: absolute;">
+        </h2>
+<div class="doc doc-contents first">
+<div class="doc doc-children">
+<div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="pyportall.api.engine.core">
+
+        <code>core</code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Module where core API-related classes live.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.engine.core.APIClient">
+
+        <code>APIClient</code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>This class holds the direct interface to Portall's API. Other classes may need to use one API client to actually send requests to the API.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.core.APIClient.__init__">
+
+        <code class="highlight language-python">
+__init__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">preflight</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>When instantiating an API client, you will provide an API key and optionally opt for batch or preflight modes.</p>
+<p>In preflight mode, requests to the API will not be executed. Instead, the API returns the estimated cost in credits for such request.</p>
+<p>Use batch mode when requests take longer to execute than the default API timeout (around 15s).</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api_key</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>API key to use with Portall's API, in case no API key is available via the <code>PYPORTALL_API_KEY</code> environment variable. Please contact us if you need one.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>batch</code></td>
+<td><code>Optional[bool]</code></td>
+<td>
+<p>Whether the client will work in batch mode or not.</p>
+</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>preflight</code></td>
+<td><code>Optional[bool]</code></td>
+<td>
+<p>Whether the client will work in preflight mode or not.</p>
+</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PyPortallException</code></td>
+<td>
+<p>Raised if no API key is available either through the <code>api_key</code> parameter or the <code>PYPORTALL_API_KEY</code> environment variable.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.core.APIClient.call_indicators">
+
+        <code class="highlight language-python">
+call_indicators<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Send requests to Portall's indicator API.</p>
+<p>Takes an arbitrary object and, as long as it can be transformed into a JSON string, sends it to the indicator API. It deals with preflight and batch mode according to the settings defined upon creation of the client.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td><code>str</code></td>
+<td>
+<p>URL of the specific API endpoint in question.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td><code>Any</code></td>
+<td>
+<p>Any python object that can be encoded to a JSON string.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Any</code></td>
+<td>
+<p>The Python object derived from the JSON received by the API.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AuthError</code></td>
+<td>
+<p>Authentication has failed, probably because of a wrong API key.</p>
+</td>
+</tr>
+<tr>
+<td><code>BatchError</code></td>
+<td>
+<p>A batch request has failed, because of an error or because the batch timeout has expired.</p>
+</td>
+</tr>
+<tr>
+<td><code>PreFlightException</code></td>
+<td>
+<p>Raised in preflight mode, includes the number of estimated credits that the actual request would consume.</p>
+</td>
+</tr>
+<tr>
+<td><code>PyPortallException</code></td>
+<td>
+<p>Generic API exception.</p>
+</td>
+</tr>
+<tr>
+<td><code>RateLimitError</code></td>
+<td>
+<p>The request cannot be fulfilled because either the company credit has run out or the maximum number of allowed requests per second has been exceeded.</p>
+</td>
+</tr>
+<tr>
+<td><code>TimeoutError</code></td>
+<td>
+<p>A regular (non-batch) request has timed out.</p>
+</td>
+</tr>
+<tr>
+<td><code>ValidationError</code></td>
+<td>
+<p>The format of the request is not valid.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.core.APIClient.call_metadata">
+
+        <code class="highlight language-python">
+call_metadata<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Send requests to Portall's metadata API.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Any</code></td>
+<td>
+<p>The Python object derived from the JSON received by the API.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PyPortallException</code></td>
+<td>
+<p>Generic API exception.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.engine.core.APIHelper">
+
+        <code>APIHelper</code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Ensure a common structure for helpers that actually do things.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.core.APIHelper.__init__">
+
+        <code class="highlight language-python">
+__init__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Class constructor to attach the coresponding API client.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>client</code></td>
+<td><code>APIClient</code></td>
+<td>
+<p>API client object that the helper will use to actually send requests to the API when it has to.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="pyportall.api.engine.geopandas">
+
+        <code>geopandas</code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Module where the (Geo)Pandas helpers live.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.engine.geopandas.GeocodingHelper">
+
+        <code>GeocodingHelper</code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Help with street addresses.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.geopandas.GeocodingHelper.resolve">
+
+        <code class="highlight language-python">
+resolve<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Find latitude and longitude for a number of street addresses.</p>
+<p>Turn a DataFrame with street addresses into a GeoDataFrame where the geometry column derives from the corresponding latitude and longitude, once those addresses have been properly geocoded.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>df</code></td>
+<td><code>DataFrame</code></td>
+<td>
+<p>DataFrame with at least one <code>street</code> column that includes full or partial addresses to be geocoded. Even though <code>street</code> is the only mandatory column and can contain arbitrary, partial or full addreses, geocoding typically works better if the full address is split into several fields. Therefore, other columns can help improve the accuracy of the geocoding process, namely <code>country</code>, <code>county</code>, <code>city</code>, <code>district</code> and <code>postal_code</code>.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>Optional[pyportall.api.models.lbs.GeocodingOptions]</code></td>
+<td>
+<p>Default values for the <code>country</code>, <code>county</code>, <code>city</code>, <code>district</code> and <code>postal_code</code> columns of the DataFrame, when they are not present.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GeoDataFrame</code></td>
+<td>
+<p>A GeoDataFrame with all the geocoding columns plus the geometry column with the actual points derived from the geocoding process.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.engine.geopandas.IndicatorHelper">
+
+        <code>IndicatorHelper</code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Help with indicators.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.geopandas.IndicatorHelper.resolve_aggregated">
+
+        <code class="highlight language-python">
+resolve_aggregated<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">indicator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Find the value of an aggregated indicator for a number of target geometries in a particular moment in time.</p>
+<p>Given a moment in time, a number of geometries and a target indicator, find the aggregated indicator value for each of the geometries in the specified moment.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gdf</code></td>
+<td><code>GeoDataFrame</code></td>
+<td>
+<p><a href="https://geopandas.org/data_structures.html#geodataframe">GeoDataFrame</a> with a <code>geometry</code> column that stands for the geometries to be used on the calculations.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>indicator</code></td>
+<td><code>Optional[pyportall.api.models.indicators.Indicator]</code></td>
+<td>
+<p>The indicator to be computed.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>moment</code></td>
+<td><code>Optional[pyportall.api.models.indicators.Moment]</code></td>
+<td>
+<p>The moment in time that will be used for the calculations.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GeoDataFrame</code></td>
+<td>
+<p>A copy of the original <a href="https://geopandas.org/data_structures.html#geodataframe">GeoDataFrame</a> with a new column <code>value</code> with the computed values for each geometry.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.geopandas.IndicatorHelper.resolve_disaggregated">
+
+        <code class="highlight language-python">
+resolve_disaggregated<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">polygon</span><span class="p">,</span> <span class="n">indicator</span><span class="p">,</span> <span class="n">moment</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Find the disaggregated values for an indicator over a target geometry in a particular moment in time.</p>
+<p>Given a moment in time, one geometry and a target indicator, find the H3 cells underneath the given geometry and compute the indicator value for each of them.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>polygon</code></td>
+<td><code>Polygon</code></td>
+<td>
+<p>Geometry to be used on the calculations.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>indicator</code></td>
+<td><code>Indicator</code></td>
+<td>
+<p>The indicator to be computed.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>moment</code></td>
+<td><code>Moment</code></td>
+<td>
+<p>The moment in time that will be used for the calculations.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GeoDataFrame</code></td>
+<td>
+<p>A <a href="https://geopandas.org/data_structures.html#geodataframe">GeoDataFrame</a> with one row per H3 cells and columns: <code>id</code> with the H3 cell id, <code>geometry</code> with the geometry of the H3 cells, <code>value</code> with the indicator value for the cell, and <code>weight</code>, which is useful if you want to aggregate the data from this disaggregated geodataframe yourself.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.engine.geopandas.IsolineHelper">
+
+        <code>IsolineHelper</code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Help with isovists.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.geopandas.IsolineHelper.resolve">
+
+        <code class="highlight language-python">
+resolve<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Find isolines (space that can be reached in a certain amount of time from a given point in space).</p>
+<p>Turn a <a href="https://geopandas.org/data_structures.html#geodataframe">GeoDataFrame</a> with points and other parameters the define isolines into another <a href="https://geopandas.org/data_structures.html#geodataframe">GeoDataFrame</a> where the geometry column is formed by the polygons that translate to such isoline definitions.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gdf</code></td>
+<td><code>GeoDataFrame</code></td>
+<td>
+<p><a href="https://geopandas.org/data_structures.html#geodataframe">GeoDataFrame</a> with a <code>geometry</code> column with the target points and other columns to help define the isolines, Such columns are <code>mode</code>, <code>range</code>, and <code>moment</code>.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>Optional[pyportall.api.models.lbs.IsolineOptions]</code></td>
+<td>
+<p>Default values for the <code>mode</code>, <code>range</code>, and <code>moment</code> columns of the original <a href="https://geopandas.org/data_structures.html#geodataframe">GeoDataFrame</a>, when they are not present.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GeoDataFrame</code></td>
+<td>
+<p>A <a href="https://geopandas.org/data_structures.html#geodataframe">GeoDataFrame</a> with all the isoline definition columns plus a <code>destination</code> column with the original points. The geometry column now holds the actual polygons derived from computing the isolines.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.engine.geopandas.IsovistHelper">
+
+        <code>IsovistHelper</code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Help with isolines.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.geopandas.IsovistHelper.resolve">
+
+        <code class="highlight language-python">
+resolve<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Find isovists (space visible from a given point in space).</p>
+<p>Turn a GeoDataFrame with points and other parameters the define isovists into another GeoDataFrame where the geometry column is formed by the polygons that translate to such isovist definitions.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gdf</code></td>
+<td><code>GeoDataFrame</code></td>
+<td>
+<p>GeoDataFrame with a <code>geometry</code> column with the target points and other columns to help define the isovists, Such columns are <code>radius_m</code>, <code>num_rays</code>, <code>heading_deg</code> and <code>fov_deg</code>.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>Optional[pyportall.api.models.lbs.IsovistOptions]</code></td>
+<td>
+<p>Default values for the <code>radius_m</code>, <code>num_rays</code>, <code>heading_deg</code> and <code>fov_deg</code> columns of the original GeoDataFrame, when they are not present.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GeoDataFrame</code></td>
+<td>
+<p>A GeoDataFrame with all the isovist definition columns plus a <code>destination</code> column with the original points. The geometry column now holds the actual polygons derived from computing the isovists.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="pyportall.api.engine.metadata">
+
+        <code>metadata</code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Module where the metadata helpers live.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.engine.metadata.MetadataHelper">
+
+        <code>MetadataHelper</code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Help with indicator metadata.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.metadata.MetadataHelper.__init__">
+
+        <code class="highlight language-python">
+__init__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Class constructor to attach the coresponding API client.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>client</code></td>
+<td><code>APIClient</code></td>
+<td>
+<p>API client object that the helper will use to actually send requests to the metadata API when it has to.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.metadata.MetadataHelper.all">
+
+        <code class="highlight language-python">
+all<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Get all the indicators available in the metadata database.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>List[pyportall.api.models.metadata.IndicatorMetadata]</code></td>
+<td>
+<p>A list of indicators with their metadata.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.metadata.MetadataHelper.get">
+
+        <code class="highlight language-python">
+get<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indicator_code</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Get just one of the indicators available in the metadata database.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>indicator_code</code></td>
+<td><code>str</code></td>
+<td>
+<p>Code of the indicator to be retrieved.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Optional[pyportall.api.models.metadata.IndicatorMetadata]</code></td>
+<td>
+<p>Indicator with its metadata.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.engine.metadata.MetadataHelper.refresh">
+
+        <code class="highlight language-python">
+refresh<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Update the metadata with a fresh copy from the database.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../examples/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Examples
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../ref_models/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                pyportall.api.models
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../assets/javascripts/bundle.c1ccee15.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
