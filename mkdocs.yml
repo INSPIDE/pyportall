@@ -1,0 +1,22 @@
+site_name: pyportall
+
+theme:
+  name: "material"
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: false
+
+nav:
+  - "index.md"
+  - "getting_started.md"
+  - "examples.md"
+  - "Reference":
+    - "pyportall.api.engine": "ref_engine.md"
+    - "pyportall.api.models": "ref_models.md"
+    - "pyportall.exceptions": "ref_exceptions.md"

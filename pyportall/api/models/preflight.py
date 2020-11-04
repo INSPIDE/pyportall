@@ -1,3 +1,5 @@
+"""Preflight requests related model classes."""
+
 from pydantic import BaseModel
 from pydantic.fields import Field
 

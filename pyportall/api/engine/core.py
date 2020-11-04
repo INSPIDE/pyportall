@@ -1,9 +1,11 @@
+"""Module where core API-related classes live."""
+
 import os
 import httpx
 from typing import Any, Dict, Optional
 from time import sleep
 
-from pyportall.exceptions import PreFlightException, PyPortallException
+from pyportall.exceptions import AuthError, BatchError, PreFlightException, PyPortallException, RateLimitError, TimeoutError, ValidationError
 from pyportall.api.models.preflight import Preflight
 
 
@@ -18,7 +20,23 @@ ENDPOINT_DISAGGREGATED_INDICATORS = os.getenv("PYPORTALL_ENDPOINT_DISAGGREGATED_
 
 
 class APIClient:
+    """This class holds the direct interface to Portall's API. Other classes may need to use one API client to actually send requests to the API."""
+
     def __init__(self, api_key: Optional[str] = None, batch: Optional[bool] = False, preflight: Optional[bool] = False) -> None:
+        """When instantiating an API client, you will provide an API key and optionally opt for batch or preflight modes.
+
+        In preflight mode, requests to the API will not be executed. Instead, the API returns the estimated cost in credits for such request.
+
+        Use batch mode when requests take longer to execute than the default API timeout (around 15s).
+
+        Args:
+            api_key: API key to use with Portall's API, in case no API key is available via the `PYPORTALL_API_KEY` environment variable. Please contact us if you need one.
+            batch: Whether the client will work in batch mode or not.
+            preflight: Whether the client will work in preflight mode or not.
+
+        Raises:
+            PyPortallException: Raised if no API key is available either through the `api_key` parameter or the `PYPORTALL_API_KEY` environment variable.
+        """
         self.api_key = api_key or os.getenv("PYPORTALL_API_KEY")
         if self.api_key is None:
             raise PyPortallException("API key is required to use Portall's API")
@@ -26,6 +44,27 @@ class APIClient:
         self.preflight = preflight
 
     def call_indicators(self, url: str, input: Any) -> Any:
+        """Send requests to Portall's indicator API.
+
+        Takes an arbitrary object and, as long as it can be transformed into a JSON string, sends it to the indicator API. It deals with preflight and batch mode according to the settings defined upon creation of the client.
+
+        Args:
+            url: URL of the specific API endpoint in question.
+            input: Any python object that can be encoded to a JSON string.
+
+        Returns:
+            The Python object derived from the JSON received by the API.
+
+        Raises:
+            AuthError: Authentication has failed, probably because of a wrong API key.
+            BatchError: A batch request has failed, because of an error or because the batch timeout has expired.
+            PreFlightException: Raised in preflight mode, includes the number of estimated credits that the actual request would consume.
+            PyPortallException: Generic API exception.
+            RateLimitError: The request cannot be fulfilled because either the company credit has run out or the maximum number of allowed requests per second has been exceeded.
+            TimeoutError: A regular (non-batch) request has timed out.
+            ValidationError: The format of the request is not valid.
+        """
+
         query_params: Dict[str, Any] = {"apikey": self.api_key}
         if self.preflight is True:
             query_params["preflight"] = True
@@ -35,7 +74,7 @@ class APIClient:
         try:
             response = httpx.post(url, params=query_params, headers={"content-type": "application/json"}, json=input)
         except httpx.ReadTimeout:
-            raise PyPortallException("API is timing out, please consider using a batch-enabled client")
+            raise TimeoutError("API is timing out, please consider using a batch-enabled client")
 
         if response.status_code == 200:
             if self.preflight:
@@ -52,16 +91,27 @@ class APIClient:
                 elif response.status_code == 202:
                     sleep(BATCH_DELAY_S)
                 else:
-                    return None
+                    raise BatchError("Batch job is not available, probably because of an error or because the batch timeout has expired")
         elif response.status_code == 401:
-            raise PyPortallException("Wrong API key")
+            raise AuthError("Wrong API key")
         elif response.status_code == 422:
-            raise PyPortallException(response.json()["detail"])
+            raise ValidationError(response.json()["detail"])
+        elif response.status_code == 429:
+            raise RateLimitError(response.json()["detail"])
         else:
             raise PyPortallException(response.text)
 
-    def call_metadata(self, url: str = ENDPOINT_METADATA) -> Any:
-        response = httpx.get(url)
+    def call_metadata(self) -> Any:
+        """Send requests to Portall's metadata API.
+
+        Returns:
+            The Python object derived from the JSON received by the API.
+
+        Raises:
+            PyPortallException: Generic API exception.
+        """
+
+        response = httpx.get(ENDPOINT_METADATA)
 
         if response.status_code == 200:
             return response.json()
@@ -70,5 +120,12 @@ class APIClient:
 
 
 class APIHelper:
+    """Ensure a common structure for helpers that actually do things."""
+
     def __init__(self, client: APIClient) -> None:
+        """Class constructor to attach the coresponding API client.
+
+        Args:
+            client: API client object that the helper will use to actually send requests to the API when it has to.
+        """
         self.client = client
