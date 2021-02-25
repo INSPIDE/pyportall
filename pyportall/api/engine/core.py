@@ -111,7 +111,7 @@ class APIClient:
             PyPortallException: Generic API exception.
         """
 
-        response = httpx.get(ENDPOINT_METADATA)
+        response = httpx.get(ENDPOINT_METADATA, params={"apikey": self.api_key})
 
         if response.status_code == 200:
             return response.json()
