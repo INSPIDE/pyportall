@@ -15,7 +15,7 @@ class MetadataHelper(APIHelper):
     """Help with indicator metadata."""
 
     def __init__(self, client: APIClient) -> None:
-        """Class constructor to attach the coresponding API client.
+        """Class constructor to attach the corresponding API client.
 
         Args:
             client: API client object that the helper will use to actually send requests to the metadata API when it has to.
