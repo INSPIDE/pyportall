@@ -12,7 +12,7 @@ setup(
     license="MIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version="0.0.7",
+    version="0.0.8",
     classifiers=[
         "Programming Language :: Python :: 3.8",
         "License :: Other/Proprietary License",
@@ -20,8 +20,8 @@ setup(
     ],
     packages=find_packages(),
     install_requires=[
-        'pydantic==1.6.1',
-        'httpx==0.15.5',
+        'pydantic>=1.6.1',
+        'httpx>=0.15.5',
         'geopandas'
     ]
 )

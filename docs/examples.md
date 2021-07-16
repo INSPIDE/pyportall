@@ -124,6 +124,30 @@ isoline_disaggregated_results = indicator_helper.resolve_disaggregated(isolines[
 
 The resulting geodataframes are different now, and represent one [H3 cell](https://eng.uber.com/h3/) per row, with its geometry and id as columns, together with the `value` column itself and a `weight` column that can be useful if you want to aggregate the data from this disaggregated geodataframe yourself.
 
+Finally, you may want to save these dataframes back into Portall so that you can, for instance, show them on a dashboard. In order to do that, you need to first convert them to `PortallDataFrame` objects:
+
+```python
+from pyportall.api.models.geopandas import PortallDataFrame
+
+isovist_results_pdf = PortallDataFrame.from_gdf(isovist_results, client=client, name="isovist")
+isoline_results_pdf = PortallDataFrame.from_gdf(isoline_results, client=client, name="isoline")
+isovist_disaggregated_results_pdf = PortallDataFrame.from_gdf(isovist_disaggregated_results, client=client, name="isovist_dis")
+isoline_disaggregated_results_pdf = PortallDataFrame.from_gdf(isoline_disaggregated_results, client=client, name="isoline_dis")
+```
+
+`PortallDataFrame` objects inherit from `GeoDataFrame` objects, and differ only in the addition of the `id`, `name` and `description` fields, and `save` method (more on this below), so that you can use the former directly in place of the latter.
+
+Once you have the `PortallDataFrame` objects, you can save them into Portall:
+
+```python
+isovist_results_pdf.save()
+isoline_results_pdf.save()
+isovist_disaggregated_results_pdf.save()
+isoline_disaggregated_results_pdf.save()
+```
+
+There is also a `PortallDataFrameHelper` that you can use to retrieve saved `PortallDataFrame` objects from Portall.
+
 ## Preflight
 
 All those API requests incur in credit costs. To know about those costs in advance, you can create a preflight client and send the very same request beforehand. Preflight works for batch requests too.

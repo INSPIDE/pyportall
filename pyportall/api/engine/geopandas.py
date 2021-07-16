@@ -1,13 +1,16 @@
 """Module where the (Geo)Pandas helpers live."""
 
 import json
+import httpx
 import pandas as pd
 import geopandas as gpd
-from typing import Optional
+from typing import List, Optional, Union
 from shapely.geometry import Polygon, mapping
+from pydantic.types import UUID4
 
 from pyportall.utils import jsonable_encoder
-from pyportall.api.engine.core import APIHelper, ENDPOINT_AGGREGATED_INDICATORS, ENDPOINT_DISAGGREGATED_INDICATORS, ENDPOINT_GEOCODING, ENDPOINT_RESOLVE_ISOLINES, ENDPOINT_RESOLVE_ISOVISTS
+from pyportall.api.engine.core import APIHelper, ENDPOINT_AGGREGATED_INDICATORS, ENDPOINT_DISAGGREGATED_INDICATORS, ENDPOINT_GEOCODING, ENDPOINT_RESOLVE_ISOLINES, ENDPOINT_RESOLVE_ISOVISTS, ENDPOINT_DATAFRAMES
+from pyportall.api.models.geopandas import PortallDataFrame, PortallDataFrameAPI
 from pyportall.api.models.lbs import GeocodingOptions, IsolineOptions, IsovistOptions
 from pyportall.api.models.indicators import Indicator, Moment
 
@@ -113,3 +116,32 @@ class IndicatorHelper(APIHelper):
         features = self.client.call_indicators(ENDPOINT_DISAGGREGATED_INDICATORS, {"polygon": mapping(polygon), "indicator": jsonable_encoder(indicator), "moment": jsonable_encoder(moment)})
 
         return gpd.GeoDataFrame.from_features(features=features, crs="EPSG:4326")
+
+
+class PortallDataFrameHelper(APIHelper):
+    """Help with Portall's GeoDataFrame wrappers."""
+
+    def all(self) -> List[PortallDataFrame]:
+        """Get all the dataframes available in Portall's database.
+
+        Returns:
+            A list of GeoDataFrame-compatible dataframes.
+        """
+
+        pdfs_api_json = self.client.get(ENDPOINT_DATAFRAMES)
+
+        return [PortallDataFrame.from_api(PortallDataFrameAPI.parse_obj(pdf_api_json), self.client) for pdf_api_json in pdfs_api_json]
+
+    def get(self, id: UUID4) -> Union[PortallDataFrame, None]:
+        """Get just one of the dataframes available in Portall's database.
+
+        Args:
+            id: Id. of the dataframe to be retrieved.
+
+        Returns:
+            GeoDataFrame-compatible dataframe.
+        """
+
+        pdf_api_json = httpx.get(f"{ENDPOINT_DATAFRAMES}{id}/")
+
+        return PortallDataFrame.from_api(PortallDataFrameAPI.parse_obj(pdf_api_json), self.client)

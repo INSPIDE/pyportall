@@ -2,16 +2,19 @@
 
 import os
 import httpx
+import json
 from typing import Any, Dict, Optional
 from time import sleep
 
 from pyportall.exceptions import AuthError, BatchError, PreFlightException, PyPortallException, RateLimitError, TimeoutError, ValidationError
 from pyportall.api.models.preflight import Preflight
+from pyportall.utils import jsonable_encoder
 
 
 BATCH_DELAY_S = 5
 
 ENDPOINT_METADATA = os.getenv("PYPORTALL_ENDPOINT_METADATA", "https://portall-api.inspide.com/v0/metadata/indicators/")
+ENDPOINT_DATAFRAMES = os.getenv("PYPORTALL_ENDPOINT_DATAFRAMES", "https://portall-api.inspide.com/v0/data/dataframes/")
 ENDPOINT_GEOCODING = os.getenv("PYPORTALL_ENDPOINT_GEOCODING", "https://portall-api.inspide.com/v0/pyportall/geocoding.geojson")
 ENDPOINT_RESOLVE_ISOVISTS = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOVISTS", "https://portall-api.inspide.com/v0/pyportall/isovists.geojson")
 ENDPOINT_RESOLVE_ISOLINES = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOLINES", "https://portall-api.inspide.com/v0/pyportall/isolines.geojson")
@@ -43,6 +46,163 @@ class APIClient:
         self.batch = batch
         self.preflight = preflight
 
+        self.last_status_code = None
+
+    def get(self, endpoint: str, params: Optional[Dict] = None, headers: Optional[Dict] = None) -> Any:
+        """Send GET requests to Portall's API.
+
+        Args:
+            endpoint: URL to send the request to.
+            params: Parameters to be sent as part of the final URL.
+            headers: Headers to be added to the request, if any.
+
+        Returns:
+            The Python object derived from the JSON received by the API.
+
+        Raises:
+            AuthError: Authentication has failed, probably because of a wrong API key.
+            PyPortallException: Generic API exception.
+            RateLimitError: The request cannot be fulfilled because either the company credit has run out or the maximum number of allowed requests per second has been exceeded.
+            TimeoutError: Request has timed out.
+        """
+        params = params or {}
+        params["apikey"] = self.api_key
+
+        headers = headers or {}
+
+        try:
+            response = httpx.get(endpoint, params=params, headers=headers)
+        except httpx.ReadTimeout:
+            raise TimeoutError("API is timing out. If this endpoint supports batch-enabled requests, you should probably try that.")
+
+        self.last_status_code = response.status_code
+        if self.last_status_code == 200:
+            return response.json()
+        elif self.last_status_code == 401:
+            raise AuthError("Wrong API key")
+        elif self.last_status_code == 429:
+            raise RateLimitError(response.json()["detail"])
+        else:
+            raise PyPortallException(response.json())
+
+    def post(self, endpoint: str, body: str, params: Optional[Dict] = None, headers: Optional[Dict] = None) -> Any:
+        """Send POST requests to Portall's API.
+
+        Args:
+            endpoint: URL to send the request to.
+            body: JSON string.
+            params: Parameters to be sent as part of the final URL.
+            headers: Headers to be added to the request, apart from content-type.
+
+        Returns:
+            The Python object derived from the JSON received by the API.
+
+        Raises:
+            AuthError: Authentication has failed, probably because of a wrong API key.
+            PyPortallException: Generic API exception.
+            RateLimitError: The request cannot be fulfilled because either the company credit has run out or the maximum number of allowed requests per second has been exceeded.
+            TimeoutError: Request has timed out.
+            ValidationError: The format of the request is not valid.
+        """
+        params = params or {}
+        params["apikey"] = self.api_key
+
+        headers = headers or {}
+        headers["content-type"] = "application/json"
+
+        try:
+            response = httpx.post(endpoint, params=params, headers=headers, content=body.encode("utf8"))
+        except httpx.ReadTimeout:
+            raise TimeoutError("API is timing out. If this endpoint supports batch-enabled requests, you should probably try that.")
+
+        self.last_status_code = response.status_code
+        if self.last_status_code in (200, 201, 202):
+            return response.json()
+        elif self.last_status_code == 401:
+            raise AuthError("Wrong API key")
+        elif self.last_status_code == 422:
+            raise ValidationError(response.json()["detail"])
+        elif self.last_status_code == 429:
+            raise RateLimitError(response.json()["detail"])
+        else:
+            raise PyPortallException(response.text)
+
+    def put(self, endpoint: str, body: str, params: Optional[Dict] = None, headers: Optional[Dict] = None) -> Any:
+        """Send PUT requests to Portall's API.
+
+        Args:
+            endpoint: URL to send the request to.
+            body: JSON string.
+            params: Parameters to be sent as part of the final URL.
+            headers: Headers to be added to the request, apart from content-type.
+
+        Returns:
+            The Python object derived from the JSON received by the API.
+
+        Raises:
+            AuthError: Authentication has failed, probably because of a wrong API key.
+            PyPortallException: Generic API exception.
+            RateLimitError: The request cannot be fulfilled because either the company credit has run out or the maximum number of allowed requests per second has been exceeded.
+            TimeoutError: Request has timed out.
+            ValidationError: The format of the request is not valid.
+        """
+        params = params or {}
+        params["apikey"] = self.api_key
+
+        headers = headers or {}
+        headers["content-type"] = "application/json"
+
+        try:
+            response = httpx.put(endpoint, params=params, headers=headers, content=body.encode("utf8"))
+        except httpx.ReadTimeout:
+            raise TimeoutError("API is timing out. If this endpoint supports batch-enabled requests, you should probably try that.")
+
+        self.last_status_code = response.status_code
+        if self.last_status_code in (200, 201, 202):
+            return response.json()
+        elif self.last_status_code == 401:
+            raise AuthError("Wrong API key")
+        elif self.last_status_code == 422:
+            raise ValidationError(response.json()["detail"])
+        elif self.last_status_code == 429:
+            raise RateLimitError(response.json()["detail"])
+        else:
+            raise PyPortallException(response.text)
+
+    def delete(self, endpoint: str, params: Optional[Dict] = None, headers: Optional[Dict] = None) -> None:
+        """Send DELETE requests to Portall's API.
+
+        Args:
+            endpoint: URL to send the request to.
+            params: Parameters to be sent as part of the final URL.
+            headers: Headers to be added to the request, if any.
+
+        Raises:
+            AuthError: Authentication has failed, probably because of a wrong API key.
+            PyPortallException: Generic API exception.
+            RateLimitError: The request cannot be fulfilled because either the company credit has run out or the maximum number of allowed requests per second has been exceeded.
+            TimeoutError: Request has timed out.
+        """
+        params = params or {}
+        params["apikey"] = self.api_key
+
+        headers = headers or {}
+
+        try:
+            response = httpx.delete(endpoint, params=params, headers=headers)
+        except httpx.ReadTimeout:
+            raise TimeoutError("API is timing out. This is not a common thing for delete operations, so there is probably something else going on.")
+
+        self.last_status_code = response.status_code
+        if self.last_status_code == 204:
+            return
+        elif self.last_status_code == 401:
+            raise AuthError("Wrong API key")
+        elif self.last_status_code == 429:
+            raise RateLimitError(response.json()["detail"])
+        else:
+            raise PyPortallException(response.text)
+
     def call_indicators(self, url: str, input: Any) -> Any:
         """Send requests to Portall's indicator API.
 
@@ -65,41 +225,32 @@ class APIClient:
             ValidationError: The format of the request is not valid.
         """
 
-        query_params: Dict[str, Any] = {"apikey": self.api_key}
+        query_params: Dict[str, Any] = {}
         if self.preflight is True:
             query_params["preflight"] = True
         if self.batch is True:
             query_params["batch"] = True
 
-        try:
-            response = httpx.post(url, params=query_params, headers={"content-type": "application/json"}, json=input)
-        except httpx.ReadTimeout:
-            raise TimeoutError("API is timing out, please consider using a batch-enabled client")
+        response_json = self.post(url, params=query_params, body=json.dumps(jsonable_encoder(input)))
 
-        if response.status_code == 200:
+        if self.last_status_code == 200:
             if self.preflight:
-                raise PreFlightException(Preflight(**response.json()).detail)
-            return response.json()
-        elif response.status_code == 202:
-            job_url = response.json()["detail"]
+                raise PreFlightException(Preflight(**response_json).detail)
+            return response_json
+        elif self.last_status_code == 202:
+            job_url = response_json["detail"]
 
             while True:
-                response = httpx.get(job_url, params={"apikey": self.api_key})
+                response_json = self.get(job_url)
 
-                if response.status_code == 200:
-                    return response.json()
-                elif response.status_code == 202:
+                if self.last_status_code == 200:
+                    return response_json
+                elif self.last_status_code == 202:
                     sleep(BATCH_DELAY_S)
                 else:
                     raise BatchError("Batch job is not available, probably because of an error or because the batch timeout has expired")
-        elif response.status_code == 401:
-            raise AuthError("Wrong API key")
-        elif response.status_code == 422:
-            raise ValidationError(response.json()["detail"])
-        elif response.status_code == 429:
-            raise RateLimitError(response.json()["detail"])
         else:
-            raise PyPortallException(response.text)
+            raise PyPortallException(self.last_status_code)
 
     def call_metadata(self) -> Any:
         """Send requests to Portall's metadata API.
@@ -111,12 +262,7 @@ class APIClient:
             PyPortallException: Generic API exception.
         """
 
-        response = httpx.get(ENDPOINT_METADATA, params={"apikey": self.api_key})
-
-        if response.status_code == 200:
-            return response.json()
-        else:
-            raise PyPortallException(response.json())
+        return self.get(ENDPOINT_METADATA)
 
 
 class APIHelper:
