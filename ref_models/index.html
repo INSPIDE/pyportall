@@ -8,8 +8,9 @@
       
       
       
+      
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -17,10 +18,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.19190aaf.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.24b84193.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
@@ -28,7 +29,7 @@
     
       
         
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
@@ -50,6 +51,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
       
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -79,18 +81,20 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
     <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             pyportall
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             
               pyportall.api.models
             
           </span>
         </div>
-      
+      </div>
     </div>
     
       <label class="md-header-nav__button md-icon" for="__search">
@@ -101,7 +105,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -136,10 +140,14 @@
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
+
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
@@ -158,36 +166,15 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href=".." class="md-nav__link">
-      Welcome to pyportall
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../getting_started/" class="md-nav__link">
-      Getting started
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../examples/" class="md-nav__link">
-      Examples
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to pyportall
+      </a>
+    </li>
+  
 
     
       
@@ -195,58 +182,91 @@
       
 
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_started/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
 
+    
+      
+      
+      
 
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        Examples
+      </a>
+    </li>
+  
+
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      
+      
+      
+
+  
+  
     
-    <label class="md-nav__link" for="nav-4">
-      Reference
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Reference" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        <span class="md-nav__icon md-icon"></span>
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      
+      <label class="md-nav__link" for="nav-4">
         Reference
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../ref_engine/" class="md-nav__link">
-      pyportall.api.engine
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        pyportall.api.models
         <span class="md-nav__icon md-icon"></span>
       </label>
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref_engine/" class="md-nav__link">
+        pyportall.api.engine
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
-    <a href="./" class="md-nav__link md-nav__link--active">
-      pyportall.api.models
-    </a>
-    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
       
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          pyportall.api.models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        pyportall.api.models
+      </a>
+      
+        
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -261,6 +281,264 @@
   <a href="#pyportall.api.models" class="md-nav__link">
     pyportall.api.models
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson" class="md-nav__link">
+    geojson
+  </a>
+  
+    <nav class="md-nav" aria-label="geojson">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Feature" class="md-nav__link">
+    Feature
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Feature.set_geometry" class="md-nav__link">
+    set_geometry()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.FeatureCollection" class="md-nav__link">
+    FeatureCollection
+  </a>
+  
+    <nav class="md-nav" aria-label="FeatureCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.FeatureCollection.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.FeatureCollection.__iter__" class="md-nav__link">
+    __iter__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.FeatureCollection.__len__" class="md-nav__link">
+    __len__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.GeometryCollection" class="md-nav__link">
+    GeometryCollection
+  </a>
+  
+    <nav class="md-nav" aria-label="GeometryCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.GeometryCollection.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.GeometryCollection.__iter__" class="md-nav__link">
+    __iter__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.GeometryCollection.__len__" class="md-nav__link">
+    __len__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.LineString" class="md-nav__link">
+    LineString
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.MultiLineString" class="md-nav__link">
+    MultiLineString
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.MultiPoint" class="md-nav__link">
+    MultiPoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.MultiPolygon" class="md-nav__link">
+    MultiPolygon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Point" class="md-nav__link">
+    Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Polygon" class="md-nav__link">
+    Polygon
+  </a>
+  
+    <nav class="md-nav" aria-label="Polygon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Polygon.check_coordinates" class="md-nav__link">
+    check_coordinates()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.parse_geometry_obj" class="md-nav__link">
+    parse_geometry_obj()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.parse_polygon_obj" class="md-nav__link">
+    parse_polygon_obj()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas" class="md-nav__link">
+    geopandas
+  </a>
+  
+    <nav class="md-nav" aria-label="geopandas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame" class="md-nav__link">
+    PortallDataFrame
+  </a>
+  
+    <nav class="md-nav" aria-label="PortallDataFrame">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.delete" class="md-nav__link">
+    delete()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.from_api" class="md-nav__link">
+    from_api()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.from_gdf" class="md-nav__link">
+    from_gdf()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.from_geojson" class="md-nav__link">
+    from_geojson()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.save" class="md-nav__link">
+    save()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrameAPI" class="md-nav__link">
+    PortallDataFrameAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="PortallDataFrameAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrameAPI.id" class="md-nav__link">
+    id
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -579,25 +857,27 @@
     </ul>
   
 </nav>
-    
-  </li>
+      
+    </li>
+  
 
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref_exceptions/" class="md-nav__link">
+        pyportall.exceptions
+      </a>
+    </li>
+  
+
           
-          
-
-
-  <li class="md-nav__item">
-    <a href="../ref_exceptions/" class="md-nav__link">
-      pyportall.exceptions
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
   </ul>
@@ -607,7 +887,8 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -625,6 +906,264 @@
   <a href="#pyportall.api.models" class="md-nav__link">
     pyportall.api.models
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson" class="md-nav__link">
+    geojson
+  </a>
+  
+    <nav class="md-nav" aria-label="geojson">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Feature" class="md-nav__link">
+    Feature
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Feature.set_geometry" class="md-nav__link">
+    set_geometry()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.FeatureCollection" class="md-nav__link">
+    FeatureCollection
+  </a>
+  
+    <nav class="md-nav" aria-label="FeatureCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.FeatureCollection.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.FeatureCollection.__iter__" class="md-nav__link">
+    __iter__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.FeatureCollection.__len__" class="md-nav__link">
+    __len__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.GeometryCollection" class="md-nav__link">
+    GeometryCollection
+  </a>
+  
+    <nav class="md-nav" aria-label="GeometryCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.GeometryCollection.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.GeometryCollection.__iter__" class="md-nav__link">
+    __iter__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.GeometryCollection.__len__" class="md-nav__link">
+    __len__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.LineString" class="md-nav__link">
+    LineString
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.MultiLineString" class="md-nav__link">
+    MultiLineString
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.MultiPoint" class="md-nav__link">
+    MultiPoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.MultiPolygon" class="md-nav__link">
+    MultiPolygon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Point" class="md-nav__link">
+    Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Polygon" class="md-nav__link">
+    Polygon
+  </a>
+  
+    <nav class="md-nav" aria-label="Polygon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.Polygon.check_coordinates" class="md-nav__link">
+    check_coordinates()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.parse_geometry_obj" class="md-nav__link">
+    parse_geometry_obj()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geojson.parse_polygon_obj" class="md-nav__link">
+    parse_polygon_obj()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas" class="md-nav__link">
+    geopandas
+  </a>
+  
+    <nav class="md-nav" aria-label="geopandas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame" class="md-nav__link">
+    PortallDataFrame
+  </a>
+  
+    <nav class="md-nav" aria-label="PortallDataFrame">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.delete" class="md-nav__link">
+    delete()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.from_api" class="md-nav__link">
+    from_api()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.from_gdf" class="md-nav__link">
+    from_gdf()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.from_geojson" class="md-nav__link">
+    from_geojson()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrame.save" class="md-nav__link">
+    save()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrameAPI" class="md-nav__link">
+    PortallDataFrameAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="PortallDataFrameAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyportall.api.models.geopandas.PortallDataFrameAPI.id" class="md-nav__link">
+    id
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -956,14 +1495,760 @@
                   <h1>pyportall.api.models</h1>
                 
                 <div class="doc doc-object doc-module">
-<h2 class="hidden-toc" href="#pyportall.api.models" id="pyportall.api.models" style="visibility: hidden; position: absolute;">
+<h2 class="hidden-toc" id="pyportall.api.models" style="visibility: hidden; position: absolute;">
         </h2>
 <div class="doc doc-contents first">
 <div class="doc doc-children">
 <div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="pyportall.api.models.geojson">
+
+        <code>geojson</code>
+
+
+
+      </h2>
+<div class="doc doc-contents ">
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.Feature">
+
+        <code>Feature</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>GeoJSON feature. </p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geojson.Feature.set_geometry">
+
+<code class="highlight language-python"><span class="n">set_geometry</span><span class="p">(</span><span class="n">v</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>set geometry from geo interface or input</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.FeatureCollection">
+
+        <code>FeatureCollection</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>GeoJSON feature collection. </p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geojson.FeatureCollection.__getitem__">
+
+<code class="highlight language-python"><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>get feature at a given index</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geojson.FeatureCollection.__iter__">
+
+<code class="highlight language-python"><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>iterate over features</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geojson.FeatureCollection.__len__">
+
+<code class="highlight language-python"><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>return features length</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.GeometryCollection">
+
+        <code>GeometryCollection</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>GeometryCollection Model</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geojson.GeometryCollection.__getitem__">
+
+<code class="highlight language-python"><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>get geometry at a given index</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geojson.GeometryCollection.__iter__">
+
+<code class="highlight language-python"><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>iterate over geometries</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geojson.GeometryCollection.__len__">
+
+<code class="highlight language-python"><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>return geometries length</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.LineString">
+
+        <code>LineString</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>LineString Model</p>
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.MultiLineString">
+
+        <code>MultiLineString</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>MultiLineString Model</p>
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.MultiPoint">
+
+        <code>MultiPoint</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>MultiPoint Model</p>
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.MultiPolygon">
+
+        <code>MultiPolygon</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>MultiPolygon Model</p>
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.Point">
+
+        <code>Point</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Point Model</p>
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.Polygon">
+
+        <code>Polygon</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Polygon Model</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geojson.Polygon.check_coordinates">
+
+<code class="highlight language-python"><span class="n">check_coordinates</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Validate that Polygon coordinates pass the GeoJSON spec</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.parse_geometry_obj">
+
+<code class="highlight language-python"><span class="n">parse_geometry_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p><code>obj</code> is an object that is supposed to represent a GeoJSON geometry. This method returns the
+reads the <code>"type"</code> field and returns the correct pydantic Geometry model.</p>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="pyportall.api.models.geojson.parse_polygon_obj">
+
+<code class="highlight language-python"><span class="n">parse_polygon_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p><code>obj</code> is an object that is supposed to represent a GeoJSON geometry. This method returns the
+reads the <code>"type"</code> field and returns the correct pydantic Geometry model.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="pyportall.api.models.geopandas">
+
+        <code>geopandas</code>
+
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Portall's GeoDataFrame wrappers.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geopandas.PortallDataFrame">
+
+        <code>PortallDataFrame</code>
+
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>GeoDataFrame with Portall superpowers. </p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geopandas.PortallDataFrame.__init__">
+
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Class constructor to attach the corresponding API client.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>client</code></td>
+<td><code>APIClient</code></td>
+<td>
+<p>API client object to be used to send requests to the dataframe API.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Dataframe name in Portall.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>Optional[UUID4]</code></td>
+<td>
+<p>Dataframe ID in Portall.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Dataframe description in Portall.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geopandas.PortallDataFrame.delete">
+
+<code class="highlight language-python"><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Delete dataframe in Portall.</p>
+<p>Deletes remote PortallDataFrame object in Portall. It will not delete the actual Python object.</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geopandas.PortallDataFrame.from_api">
+
+<code class="highlight language-python"><span class="n">from_api</span><span class="p">(</span><span class="n">pdf_api</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Build from a Portall dataframe as returned directly by Portall's API.</p>
+<p>Return a PortallDataFrame object out of a Portall dataframe as returned directly by Portall's API.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pdf_api</code></td>
+<td><code>PortallDataFrameAPI</code></td>
+<td>
+<p>PortallDataFrameAPI object to build the new PortallDataFrame object from.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>client</code></td>
+<td><code>APIClient</code></td>
+<td>
+<p>API client object to be used to send requests to the dataframe API.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PortallDataFrame</code></td>
+<td>
+<p>A new PortallDataFrame object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geopandas.PortallDataFrame.from_gdf">
+
+<code class="highlight language-python"><span class="n">from_gdf</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Build from GeoDataFrame.</p>
+<p>Return a PortallDataFrame object out of a standard GeoPandas' GeoDataFrame.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gdf</code></td>
+<td><code>gpd.GeoDataFrame</code></td>
+<td>
+<p>GeoDataFrame to build the new PortallDataFrame object from.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>client</code></td>
+<td><code>APIClient</code></td>
+<td>
+<p>API client object to be used to send requests to the dataframe API.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Dataframe name in Portall.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>Optional[UUID4]</code></td>
+<td>
+<p>Dataframe ID in Portall.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Dataframe description in Portall.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PortallDataFrame</code></td>
+<td>
+<p>A new PortallDataFrame object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geopandas.PortallDataFrame.from_geojson">
+
+<code class="highlight language-python"><span class="n">from_geojson</span><span class="p">(</span><span class="n">geojson</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Build from GeoJSON.</p>
+<p>Return a PortallDataFrame object out of a standard GeoPandas' GeoDataFrame.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>geojson</code></td>
+<td><code>FeatureCollection</code></td>
+<td>
+<p>FeatureCollection GeoJSON to build the new PortallDataFrame object from.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>client</code></td>
+<td><code>APIClient</code></td>
+<td>
+<p>API client object to be used to send requests to the dataframe API.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Dataframe name in Portall.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>Optional[UUID4]</code></td>
+<td>
+<p>Dataframe ID in Portall.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Dataframe description in Portall.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PortallDataFrame</code></td>
+<td>
+<p>A new PortallDataFrame object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="pyportall.api.models.geopandas.PortallDataFrame.save">
+
+<code class="highlight language-python"><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Persist dataframe in Portall.</p>
+<p>Creates or updates an equivalent, remote PortallDataFrame object in Portall.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="pyportall.api.models.geopandas.PortallDataFrameAPI">
+
+        <code>PortallDataFrameAPI</code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Representation of a Portall dataframe straight from the API. </p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-attribute">
+<h4 class="doc doc-heading" id="pyportall.api.models.geopandas.PortallDataFrameAPI.id">
+
+<code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="n">UUID4</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Portall ID of the saved dataframe in question.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-module">
 <h2 class="doc doc-heading" id="pyportall.api.models.indicators">
 
         <code>indicators</code>
+
 
 
       </h2>
@@ -976,10 +2261,18 @@
         <code>DayOfWeek</code>
 
 
+
       </h3>
 <div class="doc doc-contents ">
 <p>Day of the week. </p>
 <div class="doc doc-children">
+
+
+
+
+
+
+
 
 
 
@@ -999,6 +2292,7 @@
 
         <code>Indicator</code>
 
+
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
   </span>
@@ -1010,8 +2304,7 @@
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.indicators.Indicator.aggregated">
 
-        <code class="highlight">
-aggregated: <span class="nb">bool</span>        </code>
+<code class="highlight language-python"><span class="n">aggregated</span><span class="p">:</span> <span class="nb">bool</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1025,8 +2318,7 @@ aggregated: <span class="nb">bool</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.indicators.Indicator.code">
 
-        <code class="highlight">
-code: <span class="nb">str</span>        </code>
+<code class="highlight language-python"><span class="n">code</span><span class="p">:</span> <span class="nb">str</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1041,8 +2333,7 @@ code: <span class="nb">str</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.indicators.Indicator.normalization">
 
-        <code class="highlight">
-normalization: <span class="n">Normalization</span>        </code>
+<code class="highlight language-python"><span class="n">normalization</span><span class="p">:</span> <span class="n">Normalization</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1056,8 +2347,7 @@ normalization: <span class="n">Normalization</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.indicators.Indicator.percent">
 
-        <code class="highlight">
-percent: <span class="nb">bool</span>        </code>
+<code class="highlight language-python"><span class="n">percent</span><span class="p">:</span> <span class="nb">bool</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1076,6 +2366,7 @@ percent: <span class="nb">bool</span>        </code>
 
         <code>Moment</code>
 
+
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
   </span>
@@ -1087,8 +2378,7 @@ percent: <span class="nb">bool</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.indicators.Moment.dow">
 
-        <code class="highlight">
-dow: <span class="n">DayOfWeek</span>        </code>
+<code class="highlight language-python"><span class="n">dow</span><span class="p">:</span> <span class="n">DayOfWeek</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1109,10 +2399,23 @@ dow: <span class="n">DayOfWeek</span>        </code>
         <code>Month</code>
 
 
+
       </h3>
 <div class="doc doc-contents ">
 <p>Month. </p>
 <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1133,10 +2436,13 @@ dow: <span class="n">DayOfWeek</span>        </code>
         <code>Normalization</code>
 
 
+
       </h3>
 <div class="doc doc-contents ">
 <p>Geospatial normalization, where <code>total</code> means the actual value for a given area and <code>density</code> means values are normalized by area. </p>
 <div class="doc doc-children">
+
+
 
 
 
@@ -1160,6 +2466,7 @@ dow: <span class="n">DayOfWeek</span>        </code>
         <code>lbs</code>
 
 
+
       </h2>
 <div class="doc doc-contents ">
 <p>Models that relate to location-based services.</p>
@@ -1168,6 +2475,7 @@ dow: <span class="n">DayOfWeek</span>        </code>
 <h3 class="doc doc-heading" id="pyportall.api.models.lbs.GeocodingOptions">
 
         <code>GeocodingOptions</code>
+
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
@@ -1180,8 +2488,7 @@ dow: <span class="n">DayOfWeek</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.GeocodingOptions.city">
 
-        <code class="highlight">
-city: <span class="nb">str</span>        </code>
+<code class="highlight language-python"><span class="n">city</span><span class="p">:</span> <span class="nb">str</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1195,8 +2502,7 @@ city: <span class="nb">str</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.GeocodingOptions.country">
 
-        <code class="highlight">
-country: <span class="nb">str</span>        </code>
+<code class="highlight language-python"><span class="n">country</span><span class="p">:</span> <span class="nb">str</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1210,8 +2516,7 @@ country: <span class="nb">str</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.GeocodingOptions.county">
 
-        <code class="highlight">
-county: <span class="nb">str</span>        </code>
+<code class="highlight language-python"><span class="n">county</span><span class="p">:</span> <span class="nb">str</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1225,8 +2530,7 @@ county: <span class="nb">str</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.GeocodingOptions.district">
 
-        <code class="highlight">
-district: <span class="nb">str</span>        </code>
+<code class="highlight language-python"><span class="n">district</span><span class="p">:</span> <span class="nb">str</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1240,8 +2544,7 @@ district: <span class="nb">str</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.GeocodingOptions.postal_code">
 
-        <code class="highlight">
-postal_code: <span class="nb">str</span>        </code>
+<code class="highlight language-python"><span class="n">postal_code</span><span class="p">:</span> <span class="nb">str</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1255,8 +2558,7 @@ postal_code: <span class="nb">str</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.GeocodingOptions.state">
 
-        <code class="highlight">
-state: <span class="nb">str</span>        </code>
+<code class="highlight language-python"><span class="n">state</span><span class="p">:</span> <span class="nb">str</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1276,10 +2578,14 @@ state: <span class="nb">str</span>        </code>
         <code>IsolineMode</code>
 
 
+
       </h3>
 <div class="doc doc-contents ">
 <p>Transportation mode to use when computing an isoline. </p>
 <div class="doc doc-children">
+
+
+
 
 
 
@@ -1299,6 +2605,7 @@ state: <span class="nb">str</span>        </code>
 
         <code>IsolineOptions</code>
 
+
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
   </span>
@@ -1310,8 +2617,7 @@ state: <span class="nb">str</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.IsolineOptions.mode">
 
-        <code class="highlight">
-mode: <span class="n">IsolineMode</span>        </code>
+<code class="highlight language-python"><span class="n">mode</span><span class="p">:</span> <span class="n">IsolineMode</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1325,8 +2631,7 @@ mode: <span class="n">IsolineMode</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.IsolineOptions.moment">
 
-        <code class="highlight">
-moment: <span class="n">Moment</span>        </code>
+<code class="highlight language-python"><span class="n">moment</span><span class="p">:</span> <span class="n">Moment</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1340,8 +2645,7 @@ moment: <span class="n">Moment</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.IsolineOptions.range_s">
 
-        <code class="highlight">
-range_s: <span class="nb">int</span>        </code>
+<code class="highlight language-python"><span class="n">range_s</span><span class="p">:</span> <span class="nb">int</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1360,6 +2664,7 @@ range_s: <span class="nb">int</span>        </code>
 
         <code>IsovistOptions</code>
 
+
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
   </span>
@@ -1371,8 +2676,7 @@ range_s: <span class="nb">int</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.IsovistOptions.fov_deg">
 
-        <code class="highlight">
-fov_deg: <span class="nb">int</span>        </code>
+<code class="highlight language-python"><span class="n">fov_deg</span><span class="p">:</span> <span class="nb">int</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1386,8 +2690,7 @@ fov_deg: <span class="nb">int</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.IsovistOptions.heading_deg">
 
-        <code class="highlight">
-heading_deg: <span class="nb">int</span>        </code>
+<code class="highlight language-python"><span class="n">heading_deg</span><span class="p">:</span> <span class="nb">int</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1401,8 +2704,7 @@ heading_deg: <span class="nb">int</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.IsovistOptions.num_rays">
 
-        <code class="highlight">
-num_rays: <span class="nb">int</span>        </code>
+<code class="highlight language-python"><span class="n">num_rays</span><span class="p">:</span> <span class="nb">int</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1416,8 +2718,7 @@ num_rays: <span class="nb">int</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.lbs.IsovistOptions.radius_m">
 
-        <code class="highlight">
-radius_m: <span class="nb">int</span>        </code>
+<code class="highlight language-python"><span class="n">radius_m</span><span class="p">:</span> <span class="nb">int</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1440,6 +2741,7 @@ radius_m: <span class="nb">int</span>        </code>
         <code>metadata</code>
 
 
+
       </h2>
 <div class="doc doc-contents ">
 <p>Indicator metadata-related model classes.</p>
@@ -1450,10 +2752,16 @@ radius_m: <span class="nb">int</span>        </code>
         <code>Aggregate</code>
 
 
+
       </h3>
 <div class="doc doc-contents ">
 <p>An enumeration.</p>
 <div class="doc doc-children">
+
+
+
+
+
 
 
 
@@ -1474,10 +2782,15 @@ radius_m: <span class="nb">int</span>        </code>
         <code>DataType</code>
 
 
+
       </h3>
 <div class="doc doc-contents ">
 <p>An enumeration.</p>
 <div class="doc doc-children">
+
+
+
+
 
 
 
@@ -1498,10 +2811,22 @@ radius_m: <span class="nb">int</span>        </code>
         <code>Format</code>
 
 
+
       </h3>
 <div class="doc doc-contents ">
 <p>An enumeration.</p>
 <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1525,6 +2850,7 @@ radius_m: <span class="nb">int</span>        </code>
         <code>preflight</code>
 
 
+
       </h2>
 <div class="doc doc-contents ">
 <p>Preflight requests related model classes.</p>
@@ -1533,6 +2859,7 @@ radius_m: <span class="nb">int</span>        </code>
 <h3 class="doc doc-heading" id="pyportall.api.models.preflight.Preflight">
 
         <code>Preflight</code>
+
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
@@ -1545,8 +2872,7 @@ radius_m: <span class="nb">int</span>        </code>
 <div class="doc doc-object doc-attribute">
 <h4 class="doc doc-heading" id="pyportall.api.models.preflight.Preflight.detail">
 
-        <code class="highlight">
-detail: <span class="nb">int</span>        </code>
+<code class="highlight language-python"><span class="n">detail</span><span class="p">:</span> <span class="nb">int</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1633,15 +2959,15 @@ detail: <span class="nb">int</span>        </code>
       
     </div>
     
-      <script src="../assets/javascripts/vendor.7e0ee788.min.js"></script>
-      <script src="../assets/javascripts/bundle.c1ccee15.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
