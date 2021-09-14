@@ -12,9 +12,10 @@ setup(
     license="MIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version="0.0.8",
+    version="0.0.9",
     classifiers=[
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "License :: Other/Proprietary License",
         "Operating System :: OS Independent",
     ],

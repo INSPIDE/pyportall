@@ -1,3 +1,15 @@
+## v0.0.9
+
+* Fix batch request support
+
+## v0.0.8
+
+* Send dataframes to Portall
+
+## v0.0.7
+
+* Secure access to Metadata API
+
 ## v0.0.6
 
 * Documentation

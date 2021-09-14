@@ -76,7 +76,7 @@ class APIClient:
             raise TimeoutError("API is timing out. If this endpoint supports batch-enabled requests, you should probably try that.")
 
         self.last_status_code = response.status_code
-        if self.last_status_code == 200:
+        if self.last_status_code in (200, 202):
             return response.json()
         elif self.last_status_code == 401:
             raise AuthError("Wrong API key")
