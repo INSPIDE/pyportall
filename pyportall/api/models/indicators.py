@@ -6,7 +6,7 @@ from enum import Enum
 from pydantic import BaseModel, validator
 from pydantic.fields import Field
 from pydantic.types import conint
-from typing import Optional
+from typing import Optional, Union
 from datetime import datetime
 
 
@@ -18,6 +18,7 @@ class Normalization(str, Enum):
 
 
 Hour = conint(ge=0, le=23)
+Day = conint(ge=1, le=31)
 
 
 class DayOfWeek(str, Enum):
@@ -60,9 +61,10 @@ class Month(str, Enum):
 class Moment(BaseModel):
     """ Combination of hour, day of the week, month and year to be used when computing an indicator or requesting an isoline. """
 
-    dow: DayOfWeek = Field(..., example=DayOfWeek.friday, description="Day of the week.")
+    dow: Optional[DayOfWeek] = Field(None, example=DayOfWeek.friday, description="Day of the week.")
+    day: Optional[Day] = Field(None, example=Day(8), description="Day of the month.")
     month: Month = Field(..., example=Month.february)
-    hour: Hour = Field(..., example=Hour(12))
+    hour: Optional[Hour] = Field(None, example=Hour(12))
     year: int = Field(2020, example=2020)
 
     class Config:
@@ -76,7 +78,18 @@ class Moment(BaseModel):
 
     @validator("dow", "month", pre=True)
     def lower(cls, v):
-        return v.lower()
+        return v.lower() if v is not None else None
+
+    @validator("day")
+    def check_day(cls, v, values):
+        try:
+            datetime(values["year"], Month.get_number(values["month"]), v)
+        except ValueError:
+            raise ValueError("Wrong date")
+        except KeyError:
+            pass
+
+        return v
 
     @property
     def month_number(self) -> int:
@@ -86,10 +99,13 @@ class Moment(BaseModel):
     def dow_number(self) -> int:
         return DayOfWeek.get_number(self.dow)
 
+    def dow_number(self) -> Union[int, None]:
+        return DayOfWeek.get_number(self.dow) if self.dow is not None else None
+
     @property
     def equivalent_datetime(self) -> datetime:
         for day_number in range(1, 8):
-            equivalent_datetime = datetime(self.year, self.month_number, day_number, self.hour, 00)
+            equivalent_datetime = datetime(self.year, self.month_number, day_number, self.hour or 00, 00)
             if equivalent_datetime.weekday() == self.dow_number - 1:
                 return equivalent_datetime
 
@@ -99,7 +115,7 @@ class Moment(BaseModel):
 class Indicator(BaseModel):
     """ Defines a measurement to be computed, typically after a location and a moment have been defined. """
 
-    code: str = Field(..., example="pop", description="Indicator code as defined in the metadata database.")
+    code: str = Field(..., example="pop_res", description="Indicator code as defined in the metadata database.")
     normalization: Optional[Normalization] = Field(Normalization.total, example=Normalization.total, description="Requested geospatial normalization.")
     aggregated: Optional[bool] = Field(True, example=True, description="True means a single value is returned for the entire geometry; false means original cells and values are preserved.")
     percent: Optional[bool] = Field(False, example=False, description="Whether the value is required to be a percentage.")
@@ -107,7 +123,7 @@ class Indicator(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "code": "pop",
+                "code": "pop_res",
                 "normalization": Normalization.total,
                 "agreggated": True,
                 "percent": False

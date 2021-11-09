@@ -1,3 +1,11 @@
+# v1
+
+## v1.0
+
+Initial v1-compatible release
+
+# v0
+
 ## v0.0.10
 
 * Update API URLs

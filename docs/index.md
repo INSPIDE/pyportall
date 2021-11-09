@@ -2,8 +2,7 @@
 
 pyportall is Portall's Python SDK, the Python gateway to Portall's data and services.
 
-## Warning
+## Version compatibility
 
-Much like Portall itself, pyportall is still in a very early stage of development. So please bear with us. We will do our best to limit backwards-incompatible changes, but we will certainly have to live with them for a while. Thanks for understanding.
-
-You can also expect this documentation to improve a lot in the coming weeks!
+* pyportall versions 0.X.Y are compatible with Portall's API v0 only
+* pyportall versions 1.X are compatible with Portall's API v1 only

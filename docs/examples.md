@@ -72,18 +72,18 @@ Much like with geocoding above, we could have used [IsolineOptions][pyportall.ap
 
 In any case, the resulting geodataframes contain the geometry that correspond to the computed areas of interest, plus other columns with the actual input parameters.
 
-Now let us find the people count (indicator code "pop") we are interested in for all four areas:
+Now let us find the people count (indicator code "pop_res") we are interested in for all four areas:
 
 ```python
 indicator_helper = IndicatorHelper(client)
 
-isovist_results = indicator_helper.resolve_aggregated(isovists, indicator=Indicator(code="pop"), moment=Moment(dow=DayOfWeek.monday, month=Month.february, hour=15))
+isovist_results = indicator_helper.resolve_aggregated(isovists, indicator=Indicator(code="pop_res"), moment=Moment(dow=DayOfWeek.monday, month=Month.july, year=2021, hour=15))
 # isovist_results:
 #                                             geometry                                        destination  fov_deg  heading_deg  num_rays  radius_m  value
 # 0  POLYGON ((-3.70587 40.42087, -3.70586 40.42088...  {'coordinates': [-3.70587, 40.42048], 'type': ...      360            0        -1       100    969
 # 1  POLYGON ((-3.37825 40.47294, -3.37825 40.47295...  {'coordinates': [-3.37825, 40.47281], 'type': ...      360            0        -1       100     80
 
-isoline_results = indicator_helper.resolve_aggregated(isolines, indicator=Indicator(code="pop"), moment=Moment(dow=DayOfWeek.monday, month=Month.february, hour=10))
+isoline_results = indicator_helper.resolve_aggregated(isolines, indicator=Indicator(code="pop_res"), moment=Moment(dow=DayOfWeek.monday, month=Month.july, year=2021, hour=10))
 # isoline_results:
 #                                             geometry                                        destination        mode moment  range_s  value
 # 0  POLYGON ((-3.70711 40.42145, -3.70668 40.42162...  {'coordinates': [-3.70587, 40.42048], 'type': ...  pedestrian   None      200  42034
@@ -95,7 +95,7 @@ You can see now the people count on the new `value` column of the dataframes.
 Internally, Portall splits the areas of interest in [H3 cells]/https://eng.uber.com/h3/), obtains the people count for each cell and aggregates them. It is also possible to get the disaggregated results for each of the cells. In this case, only one input geometry can be used at a time:
 
 ```python
-isovist_disaggregated_results = indicator_helper.resolve_disaggregated(isovists["geometry"][0], indicator=Indicator(code="pop", aggregated=False), moment=Moment(dow=DayOfWeek.monday, month=Month.february, hour=15))
+isovist_disaggregated_results = indicator_helper.resolve_disaggregated(isovists["geometry"][0], indicator=Indicator(code="pop_res", aggregated=False), moment=Moment(dow=DayOfWeek.monday, month=Month.july, year=2021, hour=15))
 # isovist_disaggregated_results:
 #                                             geometry                  id       value  weight
 # 0  POLYGON ((-3.70606 40.42066, -3.70618 40.42063...  631507574769340927  157.692308       1
@@ -104,7 +104,7 @@ isovist_disaggregated_results = indicator_helper.resolve_disaggregated(isovists[
 # 3  POLYGON ((-3.70571 40.42077, -3.70583 40.42074...  631507574769495551  296.153846       1
 # 4  POLYGON ((-3.70579 40.42094, -3.70591 40.42090...  631507574769510399  142.307692       1
 
-isoline_disaggregated_results = indicator_helper.resolve_disaggregated(isolines["geometry"][0], indicator=Indicator(code="pop", aggregated=False), moment=Moment(dow=DayOfWeek.monday, month=Month.february, hour=15))
+isoline_disaggregated_results = indicator_helper.resolve_disaggregated(isolines["geometry"][0], indicator=Indicator(code="pop_res", aggregated=False), moment=Moment(dow=DayOfWeek.monday, month=Month.july, year=2021, hour=15))
 # isoline_disaggregated_results:
 #                                               geometry                  id       value  weight
 # 0    POLYGON ((-3.70621 40.42176, -3.70633 40.42172...  631507574768870911  134.615385       1

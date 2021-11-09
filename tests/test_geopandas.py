@@ -6,7 +6,7 @@ from pyportall.api.engine.geopandas import GeocodingHelper
 from pyportall.api.models.lbs import GeocodingOptions
 from pyportall.api.models.lbs import GeocodingOptions, IsovistOptions
 from pyportall.api.engine.geopandas import GeocodingHelper, IsolineHelper, IsovistHelper, IndicatorHelper
-from pyportall.api.models.indicators import DayOfWeek, Indicator, Moment, Month
+from pyportall.api.models.indicators import Day, Indicator, Moment, Month
 
 
 def test_geocoding(mocker, mocked, client, geocodings):
@@ -65,7 +65,7 @@ def test_aggregated_indicators(mocker, mocked, client, isovists, aggregated_indi
         mocker.patch.object(client, "call_indicators", return_value=aggregated_indicators)
 
     indicator_helper = IndicatorHelper(client)
-    resolved_indicators = indicator_helper.resolve_aggregated(isovists, indicator=Indicator(code="pop"), moment=Moment(dow=DayOfWeek.monday, month=Month.february, hour=15))
+    resolved_indicators = indicator_helper.resolve_aggregated(isovists, indicator=Indicator(code="pop_res"), moment=Moment(day=Day(8), year=2021, month=Month.february, hour=15))
 
     assert resolved_indicators.size == 14
 
@@ -75,6 +75,6 @@ def test_disaggregated_indicator(mocker, mocked, client, disaggregated_indicator
         mocker.patch.object(client, "call_indicators", return_value=disaggregated_indicators)
 
     indicator_helper = IndicatorHelper(client)
-    resolved_indicators = indicator_helper.resolve_disaggregated(Polygon([[-3.379755, 40.4738045], [-3.3796692, 40.4743195], [-3.3794975, 40.4748344], [-3.3791542, 40.4748344], [-3.379755, 40.4738045]]), indicator=Indicator(code="pop", aggregated=False), moment=Moment(dow=DayOfWeek.monday, month=Month.february, hour=15))
+    resolved_indicators = indicator_helper.resolve_disaggregated(Polygon([[-3.379755, 40.4738045], [-3.3796692, 40.4743195], [-3.3794975, 40.4748344], [-3.3791542, 40.4748344], [-3.379755, 40.4738045]]), indicator=Indicator(code="pop_res", aggregated=False), moment=Moment(day=Day(8), year=2021, month=Month.february, hour=15))
 
     assert resolved_indicators.size == 24

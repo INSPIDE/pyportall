@@ -39,7 +39,6 @@ class IndicatorMetadata(BaseModel):
     code: str
     name: str
     description: str
-    table_name: str
     unit: Optional[str] = None
     format: Format
     coverage: Optional[str] = None

@@ -4,7 +4,7 @@ from pyportall.api.engine.geopandas import GeocodingHelper
 from pyportall.api.models.lbs import GeocodingOptions
 from pyportall.api.models.lbs import GeocodingOptions
 from pyportall.api.engine.geopandas import GeocodingHelper, IndicatorHelper
-from pyportall.api.models.indicators import DayOfWeek, Indicator, Moment, Month
+from pyportall.api.models.indicators import Day, Indicator, Moment, Month
 
 
 def test_geocoding(mocked, batch_client):
@@ -29,6 +29,6 @@ def test_aggregated_indicators(mocked, batch_client, isovists):
         raise AssertionError("Batch tests need a real API key.")
 
     indicator_helper = IndicatorHelper(batch_client)
-    resolved_indicators = indicator_helper.resolve_aggregated(isovists, indicator=Indicator(code="pop"), moment=Moment(dow=DayOfWeek.monday, month=Month.february, hour=15))
+    resolved_indicators = indicator_helper.resolve_aggregated(isovists, indicator=Indicator(code="pop_res"), moment=Moment(day=Day(8), month=Month.february, hour=15, year=2021))
 
     assert resolved_indicators.size == 14
