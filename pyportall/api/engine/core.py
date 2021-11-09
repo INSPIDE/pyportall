@@ -13,13 +13,13 @@ from pyportall.utils import jsonable_encoder
 
 BATCH_DELAY_S = 5
 
-ENDPOINT_METADATA = os.getenv("PYPORTALL_ENDPOINT_METADATA", "https://portall-api.inspide.com/v0/metadata/indicators/")
-ENDPOINT_DATAFRAMES = os.getenv("PYPORTALL_ENDPOINT_DATAFRAMES", "https://portall-api.inspide.com/v0/data/dataframes/")
-ENDPOINT_GEOCODING = os.getenv("PYPORTALL_ENDPOINT_GEOCODING", "https://portall-api.inspide.com/v0/pyportall/geocoding.geojson")
-ENDPOINT_RESOLVE_ISOVISTS = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOVISTS", "https://portall-api.inspide.com/v0/pyportall/isovists.geojson")
-ENDPOINT_RESOLVE_ISOLINES = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOLINES", "https://portall-api.inspide.com/v0/pyportall/isolines.geojson")
-ENDPOINT_AGGREGATED_INDICATORS = os.getenv("PYPORTALL_ENDPOINT_AGGREGATED_INDICATORS", "https://portall-api.inspide.com/v0/pyportall/indicators.geojson")
-ENDPOINT_DISAGGREGATED_INDICATORS = os.getenv("PYPORTALL_ENDPOINT_DISAGGREGATED_INDICATORS", "https://portall-api.inspide.com/v0/pyportall/indicator.geojson")
+ENDPOINT_METADATA = os.getenv("PYPORTALL_ENDPOINT_METADATA", "https://api.portall.es/v0/metadata/indicators/")
+ENDPOINT_DATAFRAMES = os.getenv("PYPORTALL_ENDPOINT_DATAFRAMES", "https://api.portall.es/v0/data/dataframes/")
+ENDPOINT_GEOCODING = os.getenv("PYPORTALL_ENDPOINT_GEOCODING", "https://api.portall.es/v0/pyportall/geocoding.geojson")
+ENDPOINT_RESOLVE_ISOVISTS = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOVISTS", "https://api.portall.es/v0/pyportall/isovists.geojson")
+ENDPOINT_RESOLVE_ISOLINES = os.getenv("PYPORTALL_ENDPOINT_RESOLVE_ISOLINES", "https://api.portall.es/v0/pyportall/isolines.geojson")
+ENDPOINT_AGGREGATED_INDICATORS = os.getenv("PYPORTALL_ENDPOINT_AGGREGATED_INDICATORS", "https://api.portall.es/v0/pyportall/indicators.geojson")
+ENDPOINT_DISAGGREGATED_INDICATORS = os.getenv("PYPORTALL_ENDPOINT_DISAGGREGATED_INDICATORS", "https://api.portall.es/v0/pyportall/indicator.geojson")
 
 
 class APIClient:
