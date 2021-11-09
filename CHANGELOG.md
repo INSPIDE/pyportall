@@ -1,3 +1,7 @@
+## v0.0.10
+
+* Update API URLs
+
 ## v0.0.9
 
 * Fix batch request support
