@@ -10,7 +10,7 @@ from pydantic.types import UUID4
 
 from pyportall.utils import jsonable_encoder
 from pyportall.api.engine.core import APIHelper, ENDPOINT_AGGREGATED_INDICATORS, ENDPOINT_DISAGGREGATED_INDICATORS, ENDPOINT_GEOCODING, ENDPOINT_RESOLVE_ISOLINES, ENDPOINT_RESOLVE_ISOVISTS, ENDPOINT_DATAFRAMES
-from pyportall.api.models.geopandas import PortallDataFrame, PortallDataFrameAPI
+from pyportall.api.models.geopandas import PortallGeoDataFrame, PortallDataFrameAPI
 from pyportall.api.models.lbs import GeocodingOptions, IsolineOptions, IsovistOptions
 from pyportall.api.models.indicators import Indicator, Moment
 
@@ -118,10 +118,10 @@ class IndicatorHelper(APIHelper):
         return gpd.GeoDataFrame.from_features(features=features, crs="EPSG:4326")
 
 
-class PortallDataFrameHelper(APIHelper):
+class PortallGeoDataFrameHelper(APIHelper):
     """Help with Portall's GeoDataFrame wrappers."""
 
-    def all(self) -> List[PortallDataFrame]:
+    def all(self) -> List[PortallGeoDataFrame]:
         """Get all the dataframes available in Portall's database.
 
         Returns:
@@ -130,9 +130,9 @@ class PortallDataFrameHelper(APIHelper):
 
         pdfs_api_json = self.client.get(ENDPOINT_DATAFRAMES)
 
-        return [PortallDataFrame.from_api(PortallDataFrameAPI.parse_obj(pdf_api_json), self.client) for pdf_api_json in pdfs_api_json]
+        return [PortallGeoDataFrame.from_api(PortallDataFrameAPI.parse_obj(pdf_api_json), self.client) for pdf_api_json in pdfs_api_json]
 
-    def get(self, id: UUID4) -> Union[PortallDataFrame, None]:
+    def get(self, id: UUID4) -> Union[PortallGeoDataFrame, None]:
         """Get just one of the dataframes available in Portall's database.
 
         Args:
@@ -144,4 +144,4 @@ class PortallDataFrameHelper(APIHelper):
 
         pdf_api_json = httpx.get(f"{ENDPOINT_DATAFRAMES}{id}/")
 
-        return PortallDataFrame.from_api(PortallDataFrameAPI.parse_obj(pdf_api_json), self.client)
+        return PortallGeoDataFrame.from_api(PortallDataFrameAPI.parse_obj(pdf_api_json), self.client)

@@ -11,7 +11,7 @@ from pyportall.api.models.geojson import FeatureCollection, Feature, Polygon
 from pyportall.exceptions import ValidationError
 
 
-class PortallDataFrame(gpd.GeoDataFrame):
+class PortallGeoDataFrame(gpd.GeoDataFrame):
     """ GeoDataFrame with Portall superpowers. """
 
     def __init__(self, client: APIClient, name: Optional[str] = None, id: Optional[UUID4] = None, description: Optional[str] = None, *args, **kwargs) -> None:
@@ -31,63 +31,63 @@ class PortallDataFrame(gpd.GeoDataFrame):
         self.description = description
 
     @staticmethod
-    def from_gdf(gdf: gpd.GeoDataFrame, client: APIClient, name: Optional[str] = None, id: Optional[UUID4] = None, description: Optional[str] = None) -> PortallDataFrame:
+    def from_gdf(gdf: gpd.GeoDataFrame, client: APIClient, name: Optional[str] = None, id: Optional[UUID4] = None, description: Optional[str] = None) -> PortallGeoDataFrame:
         """Build from GeoDataFrame.
 
-        Return a PortallDataFrame object out of a standard GeoPandas' GeoDataFrame.
+        Return a PortallGeoDataFrame object out of a standard GeoPandas' GeoDataFrame.
 
         Args:
-            gdf: GeoDataFrame to build the new PortallDataFrame object from.
+            gdf: GeoDataFrame to build the new PortallGeoDataFrame object from.
             client: API client object to be used to send requests to the dataframe API.
             name: Dataframe name in Portall.
             id: Dataframe ID in Portall.
             description: Dataframe description in Portall.
 
         Returns:
-            A new PortallDataFrame object.
+            A new PortallGeoDataFrame object.
         """
-        pdf = PortallDataFrame(client, name=name, id=id, description=description)
+        pdf = PortallGeoDataFrame(client, name=name, id=id, description=description)
         pdf.__dict__.update(gdf.__dict__)
 
         return pdf
 
     @staticmethod
-    def from_geojson(geojson: FeatureCollection, client: APIClient, name: Optional[str] = None, id: Optional[UUID4] = None, description: Optional[str] = None) -> PortallDataFrame:
+    def from_geojson(geojson: FeatureCollection, client: APIClient, name: Optional[str] = None, id: Optional[UUID4] = None, description: Optional[str] = None) -> PortallGeoDataFrame:
         """Build from GeoJSON.
 
-        Return a PortallDataFrame object out of a standard GeoPandas' GeoDataFrame.
+        Return a PortallGeoDataFrame object out of a standard GeoPandas' GeoDataFrame.
 
         Args:
-            geojson: FeatureCollection GeoJSON to build the new PortallDataFrame object from.
+            geojson: FeatureCollection GeoJSON to build the new PortallGeoDataFrame object from.
             client: API client object to be used to send requests to the dataframe API.
             name: Dataframe name in Portall.
             id: Dataframe ID in Portall.
             description: Dataframe description in Portall.
 
         Returns:
-            A new PortallDataFrame object.
+            A new PortallGeoDataFrame object.
         """
-        return PortallDataFrame.from_gdf(gpd.GeoDataFrame.from_features(features=geojson.dict()["features"], crs="EPSG:4326"), client, name=name, id=id, description=description)
+        return PortallGeoDataFrame.from_gdf(gpd.GeoDataFrame.from_features(features=geojson.dict()["features"], crs="EPSG:4326"), client, name=name, id=id, description=description)
 
     @staticmethod
-    def from_api(pdf_api: PortallDataFrameAPI, client: APIClient) -> PortallDataFrame:
+    def from_api(pdf_api: PortallDataFrameAPI, client: APIClient) -> PortallGeoDataFrame:
         """Build from a Portall dataframe as returned directly by Portall's API.
 
-        Return a PortallDataFrame object out of a Portall dataframe as returned directly by Portall's API.
+        Return a PortallGeoDataFrame object out of a Portall dataframe as returned directly by Portall's API.
 
         Args:
-            pdf_api: PortallDataFrameAPI object to build the new PortallDataFrame object from.
+            pdf_api: PortallDataFrameAPI object to build the new PortallGeoDataFrame object from.
             client: API client object to be used to send requests to the dataframe API.
 
         Returns:
-            A new PortallDataFrame object.
+            A new PortallGeoDataFrame object.
         """
-        return PortallDataFrame.from_geojson(pdf_api.geojson, client, name=pdf_api.name, id=pdf_api.id, description=pdf_api.description)
+        return PortallGeoDataFrame.from_geojson(pdf_api.geojson, client, name=pdf_api.name, id=pdf_api.id, description=pdf_api.description)
 
     def save(self) -> None:
         """Persist dataframe in Portall.
 
-        Creates or updates an equivalent, remote PortallDataFrame object in Portall.
+        Creates or updates an equivalent, remote PortallGeoDataFrame object in Portall.
         """
         try:
             pdf_api = PortallDataFrameAPI(id=getattr(self, "id", None), name=getattr(self, "name"), description=getattr(self, "descripton", None), geojson=FeatureCollection.parse_raw(self.to_json()))
@@ -102,7 +102,7 @@ class PortallDataFrame(gpd.GeoDataFrame):
     def delete(self) -> None:
         """Delete dataframe in Portall.
 
-        Deletes remote PortallDataFrame object in Portall. It will not delete the actual Python object.
+        Deletes remote PortallGeoDataFrame object in Portall. It will not delete the actual Python object.
         """
         try:
             pdf_api = PortallDataFrameAPI(id=getattr(self, "id", None), name=getattr(self, "name"), description=getattr(self, "descripton", ""), geojson=self.to_json())
