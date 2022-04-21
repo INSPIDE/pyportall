@@ -208,8 +208,6 @@ def disaggregated_indicators():
     return gpd.GeoDataFrame(disaggregated_indicators_dict, crs="EPSG:4326")
 
 
-
-
 @pytest.fixture(scope="module")
 def dataframe_json_data():
     data = [
