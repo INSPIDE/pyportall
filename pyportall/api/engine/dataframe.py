@@ -40,13 +40,14 @@ class PortallDataFrameHelper(APIHelper):
         headers = {}
 
         result = httpx.get(endpoint, params=params, headers=headers)
-
+        
         body = result.json()
 
         df = pd.DataFrame(body['data'])
 
         portall_dataframe = PortallDataFrame.from_df(
-            df, 
+            df,
+            id=id,
             client=self.client, 
             name=body['name'],
             metadata=json.dumps(body['metadata']),

@@ -1,80 +1,115 @@
 import pandas as pd
-import geopandas as gpd
-from shapely.geometry import Point, Polygon
+import json
+from uuid import UUID
 
-from pyportall.api.engine.geopandas import GeocodingHelper
+from pyportall.api.models.dataframe import PortallDataFrame
 from pyportall.api.models.lbs import GeocodingOptions
 from pyportall.api.models.lbs import GeocodingOptions, IsovistOptions
 from pyportall.api.engine.geopandas import GeocodingHelper, IsolineHelper, IsovistHelper, IndicatorHelper
 from pyportall.api.models.indicators import Day, Indicator, Moment, Month
+from pyportall.api.engine.dataframe import PortallDataFrameHelper
 
+def test_dataframe_from_df(mocker, mocked, client, saved_dataframe, dataframe_json_data):
+    """ Test the method from_df that creates a PortallDataframe from a pandas DataFrame"""
 
-def test_save(mocker, mocked, client, geocodings):
     if mocked is True:
-        mocker.patch.object(client, "call_indicators", return_value=geocodings)
+        mocker.patch.object(client, "post", return_value=saved_dataframe)
 
-    geocoding_data = {
-        "street": ["Gran Vía 46", "Calle Alcalá 10"],
-        "city": ["Madrid", "Madrid"]
-    }
+    # create a pandas example dataframe and a json metadata example
+    dataframe = pd.DataFrame(dataframe_json_data)
+    metadata = '{"company":23, "component":"23423-f334r-34r34-34r34"}'
 
-    addresses = pd.DataFrame(geocoding_data)
+    # create an instance of PortallDataFrame with client 
+    portall_df = PortallDataFrame.from_df(
+        dataframe,
+        client=client, 
+        name="New dataframe",
+        description="This is the description",
+        metadata=metadata
+    )
 
-    geocoding_helper = GeocodingHelper(client)
-    resolved_geocodings = geocoding_helper.resolve(addresses, options=GeocodingOptions(country="Spain"))
-
-    assert resolved_geocodings.size == 16
+    
+    assert portall_df.name == "New dataframe"
 
 
-def test_isovists(mocker, mocked, client, isovists):
+def test_dataframe_new(mocker, mocked, client, saved_dataframe, dataframe_json_data):
+
     if mocked is True:
-        mocker.patch.object(client, "call_indicators", return_value=isovists)
+        mocker.patch.object(client, "post", return_value=saved_dataframe)
 
-    isovist_data = {
-        "geometry": [Point(-3.70587, 40.42048), Point(-3.37825, 40.47281)]
-    }
+    dataframe = pd.DataFrame(dataframe_json_data)
+    metadata = '{"company":23, "component":"23423-f334r-34r34-34r34"}'
 
-    isovists_gdf = gpd.GeoDataFrame(isovist_data, crs="EPSG:4326")
+    portall_df = PortallDataFrame.from_df(
+        dataframe, 
+        client=client, 
+        name="New dataframe",
+        metadata=metadata,
+    )
 
-    isovist_helper = IsovistHelper(client)
-    resolved_isovists = isovist_helper.resolve(isovists_gdf, options=IsovistOptions(radius_m=100))
+    result = portall_df.save()
 
-    assert resolved_isovists.size == 12
+    assert UUID(result['id'])
 
+def test_dataframe_update(mocker, mocked, client, saved_dataframe, dataframe_json_data, dataframe_json_edited_data):
 
-def test_isolines(mocker, mocked, client, isolines):
+    helper = pdf = PortallDataFrameHelper(client)
+
     if mocked is True:
-        mocker.patch.object(client, "call_indicators", return_value=isolines)
+        mocker.patch.object(client, "post", return_value=saved_dataframe)
+        mocker.patch.object(client, "put", return_value=saved_dataframe)
 
-    isoline_data = {
-        "geometry": [Point(-3.70587, 40.42048), Point(-3.37825, 40.47281)],
-        "mode": "pedestrian",
-        "range_s": 200
-    }
+    dataframe = pd.DataFrame(dataframe_json_data)
+    metadata = '{"company":23, "component":"23423-f334r-34r34-34r34"}'
 
-    isolines_gdf = gpd.GeoDataFrame(isoline_data, crs="EPSG:4326")
+    portall_df = PortallDataFrame.from_df(
+        dataframe, 
+        client=client, 
+        name="New dataframe",
+        metadata=metadata,
+    )
 
-    isoline_helper = IsolineHelper(client)
-    resolved_isolines = isoline_helper.resolve(isolines_gdf)
+    result = portall_df.save()
 
-    assert resolved_isolines.size == 10
+    edited_data = pd.DataFrame(dataframe_json_edited_data)
 
+    edited_portall_df = PortallDataFrame.from_df(
+        edited_data,
+        id=portall_df.id,
+        client=client, 
+        name="Edited dataframe",
+        metadata=metadata,
+    )
 
-def test_aggregated_indicators(mocker, mocked, client, isovists, aggregated_indicators):
+    result = edited_portall_df.save()
+
+    assert UUID(result['id'])
+
+def test_dataframe_delete(mocker, mocked, client, saved_dataframe, dataframe_json_data):
+    '''
+    First we create a new dataframe and save it
+    Then we delete it
+    We assert the id is None
+    '''
+
+    helper = PortallDataFrameHelper(client)
+
     if mocked is True:
-        mocker.patch.object(client, "call_indicators", return_value=aggregated_indicators)
-
-    indicator_helper = IndicatorHelper(client)
-    resolved_indicators = indicator_helper.resolve_aggregated(isovists, indicator=Indicator(code="pop_res"), moment=Moment(day=Day(8), year=2021, month=Month.february, hour=15))
-
-    assert resolved_indicators.size == 14
+        mocker.patch.object(client, "delete", return_value=None)
+        mocker.patch.object(client, "post", return_value=saved_dataframe)
 
 
-def test_disaggregated_indicator(mocker, mocked, client, disaggregated_indicators):
-    if mocked is True:
-        mocker.patch.object(client, "call_indicators", return_value=disaggregated_indicators)
+    dataframe = pd.DataFrame(dataframe_json_data)
+    metadata = '{"company":23, "component":"23423-f334r-34r34-34r34"}'
 
-    indicator_helper = IndicatorHelper(client)
-    resolved_indicators = indicator_helper.resolve_disaggregated(Polygon([[-3.379755, 40.4738045], [-3.3796692, 40.4743195], [-3.3794975, 40.4748344], [-3.3791542, 40.4748344], [-3.379755, 40.4738045]]), indicator=Indicator(code="pop_res", aggregated=False), moment=Moment(day=Day(8), year=2021, month=Month.february, hour=15))
+    portall_df = PortallDataFrame.from_df(
+        dataframe, 
+        client=client, 
+        name="New dataframe",
+        metadata=metadata,
+    )
 
-    assert resolved_indicators.size == 24
+    result = portall_df.save()
+    portall_df.delete()
+
+    assert portall_df.id == None

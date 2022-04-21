@@ -1,7 +1,9 @@
 import os
 import pytest
+import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point, Polygon
+import json
 
 from pyportall.api.engine.core import APIClient
 
@@ -204,3 +206,52 @@ def disaggregated_indicators():
     }
 
     return gpd.GeoDataFrame(disaggregated_indicators_dict, crs="EPSG:4326")
+
+
+
+
+@pytest.fixture(scope="module")
+def dataframe_json_data():
+    data = [
+        {'Fecha': '2000-01-23', 'Impactos': 2345, 'Dwell time': 12.4},
+        {'Fecha': '2000-01-24', 'Impactos': 3456, 'Dwell time': 11.3},
+        {'Fecha': '2000-01-25', 'Impactos': 3423, 'Dwell time': 13.6},
+        {'Fecha': '2000-01-26', 'Impactos': 3456, 'Dwell time': 12.2}
+    ]
+
+    return data
+
+
+@pytest.fixture(scope="module")
+def dataframe_json_edited_data():
+    data = [
+        {'Fecha': '2000-01-23', 'Impactos': 1123, 'Dwell time': 1.4},
+        {'Fecha': '2000-01-24', 'Impactos': 2233, 'Dwell time': 1.3},
+        {'Fecha': '2000-01-25', 'Impactos': 6677, 'Dwell time': 1.6},
+        {'Fecha': '2000-01-26', 'Impactos': 6654, 'Dwell time': 1.2}
+    ]
+
+    return data 
+
+
+@pytest.fixture(scope="module")
+def saved_dataframe():
+
+    data = [
+        {'Fecha': '2000-01-23', 'Impactos': 2345, 'Dwell time': 12.4},
+        {'Fecha': '2000-01-24', 'Impactos': 3456, 'Dwell time': 11.3},
+        {'Fecha': '2000-01-25', 'Impactos': 3423, 'Dwell time': 13.6},
+        {'Fecha': '2000-01-26', 'Impactos': 3456, 'Dwell time': 12.2}
+    ]
+
+    dataframe = {
+        'id': '00614f81-81ce-4140-8e6d-d0a7c4f187d3',
+        'name': 'dataframe 4',
+        'description': '',
+        'data_type': 'json',
+        'data': data,
+        'metadata': {'company': 23, 'component': '23423-f334r-34r34-34r34'}
+    }
+
+    return dataframe
+

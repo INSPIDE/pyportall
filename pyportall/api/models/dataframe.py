@@ -78,7 +78,7 @@ class PortallDataFrame(pd.DataFrame):
         """
         try:
             pdf_api = PortallDataFrameAPI(
-                id=getattr(self, "id", None), 
+                id=getattr(self, "id", None),
                 name=getattr(self, "name"), 
                 description=getattr(self, "descripton", None), 
                 data_type=DataTypeEnum.json,
@@ -89,9 +89,11 @@ class PortallDataFrame(pd.DataFrame):
             raise ValidationError
 
         if pdf_api.id is None:
-            return self.client.post(ENDPOINT_DATAFRAMES, body=pdf_api.json(exclude_none=True))
+            response = self.client.post(ENDPOINT_DATAFRAMES, body=pdf_api.json(exclude_none=True))
+            self.id = response['id']
+            return response
         else:
-            return self.client.put(f"{ENDPOINT_DATAFRAMES}{pdf_api.id}/", body=pdf_api.json(exclude_none=True))
+            return self.client.put(f"{ENDPOINT_DATAFRAMES}/{pdf_api.id}/", body=pdf_api.json(exclude_none=True))
 
     def delete(self) -> None:
         """Delete dataframe in Portall.
